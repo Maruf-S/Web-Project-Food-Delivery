@@ -17,7 +17,5 @@ namespace Food_Delivery.Models
         [Column(TypeName = "nvarchar(100)")]
         public string LastName { get; set; }
         public DateTime DateCreated { get; set; }
-
-        public string GeoLocation { get; set; }
     }
 }
