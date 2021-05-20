@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Food_Delivery.Areas.Employee.Models;
 using Food_Delivery.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -32,7 +31,7 @@ namespace Food_Delivery
             options.UseSqlServer(
         Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddDefaultIdentity<Customer>(options => {
+            services.AddDefaultIdentity<ApplicationUser>(options => {
                 options.SignIn.RequireConfirmedAccount = false;
                 options.Password.RequireDigit = false;
                 options.Password.RequireLowercase = false;
@@ -41,7 +40,6 @@ namespace Food_Delivery
                 options.Password.RequiredLength = 6;
                 options.Password.RequiredUniqueChars = 1;
             }).AddRoles<IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
-            services.AddIdentityCore<EmployeeUser>().AddRoles<IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
 
             //services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddRazorPages();

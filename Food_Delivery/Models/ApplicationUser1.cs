@@ -5,7 +5,4 @@ using System.Threading.Tasks;
 
 namespace Food_Delivery.Models
 {
-    public class Customer:ApplicationUser
-    {
-    }
 }

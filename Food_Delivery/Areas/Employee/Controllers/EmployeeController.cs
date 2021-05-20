@@ -1,4 +1,4 @@
-﻿
+﻿using Food_Delivery.Helpers;
 using Food_Delivery.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -7,34 +7,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
 namespace Food_Delivery.Areas.Employee.Controllers
 {
-    [Area("Employee")]
-    public class HomeController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class EmployeeController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
-        public HomeController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
+        public EmployeeController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
             _userManager = userManager;
         }
-        public IActionResult Index()
+        // PUT api/Employee/UpdateLoc
+        [HttpPost("UpdateLoc")]
+        public async Task<string> UpdateLocAsync([FromHeader] Location location)
         {
-            return View();
-        }
-        #region APICALLS
-        [HttpGet]
-        public async Task<IActionResult> UpdateUserLocationAsync() {
-            string location = "";
-
             var employee = await GetCurrentUserAsync();
-            if (employee== null) { return NotFound(); }
-            employee.GeoLocation = location;
+            if (employee == null) { return false.ToString(); }
+            employee.GeoLocation = location.ToString();
             await _userManager.UpdateAsync(employee);
-            return Content("UPDATE SUCCESSFUL");
+            //return location.ToString();
+            return true.ToString();
         }
-        #endregion
         private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
     }
 }
