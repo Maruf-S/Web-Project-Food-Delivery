@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Food_Delivery.Areas.Employee.Models;
 using Food_Delivery.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -31,7 +32,7 @@ namespace Food_Delivery
             options.UseSqlServer(
         Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddDefaultIdentity<ApplicationUser>(options => {
+            services.AddDefaultIdentity<Customer>(options => {
                 options.SignIn.RequireConfirmedAccount = false;
                 options.Password.RequireDigit = false;
                 options.Password.RequireLowercase = false;
@@ -40,8 +41,8 @@ namespace Food_Delivery
                 options.Password.RequiredLength = 6;
                 options.Password.RequiredUniqueChars = 1;
             }).AddRoles<IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddIdentityCore<EmployeeUser>().AddRoles<IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
 
-            //services.AddIdentityCore<Employee>().AddRoles<IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
             //services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddRazorPages();
         }
@@ -70,6 +71,10 @@ namespace Food_Delivery
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapAreaControllerRoute(
+                    name: "employeesCorner",
+                    areaName:"Employee",
+                    pattern: "Employee/{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");

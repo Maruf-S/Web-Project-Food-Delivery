@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Food_Delivery.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210520140050_Made-Multiple-Tables-For-The-User-Types")]
-    partial class MadeMultipleTablesForTheUserTypes
+    [Migration("20210520150007_first-new")]
+    partial class firstnew
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,7 +21,7 @@ namespace Food_Delivery.Migrations
                 .HasAnnotation("ProductVersion", "5.0.6")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Food_Delivery.Models.ApplicationUser", b =>
+            modelBuilder.Entity("Food_Delivery.Models.Customer", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -241,7 +241,7 @@ namespace Food_Delivery.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Food_Delivery.Models.ApplicationUser", null)
+                    b.HasOne("Food_Delivery.Models.Customer", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -250,7 +250,7 @@ namespace Food_Delivery.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Food_Delivery.Models.ApplicationUser", null)
+                    b.HasOne("Food_Delivery.Models.Customer", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -265,7 +265,7 @@ namespace Food_Delivery.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Food_Delivery.Models.ApplicationUser", null)
+                    b.HasOne("Food_Delivery.Models.Customer", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -274,7 +274,7 @@ namespace Food_Delivery.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Food_Delivery.Models.ApplicationUser", null)
+                    b.HasOne("Food_Delivery.Models.Customer", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
