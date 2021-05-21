@@ -19,5 +19,8 @@ namespace Food_Delivery.Models
         public DateTime DateCreated { get; set; }
 
         public string GeoLocation { get; set; }
+
+        //nullable
+        public string Postion { get; set; }
     }
 }

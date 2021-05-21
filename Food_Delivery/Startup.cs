@@ -73,6 +73,10 @@ namespace Food_Delivery
                     name: "employeesCorner",
                     areaName:"Employee",
                     pattern: "Employee/{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapAreaControllerRoute(
+                    name: "SystemAdminsCorner",
+                    areaName: "SystemAdmin",
+                    pattern: "Admin/{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
