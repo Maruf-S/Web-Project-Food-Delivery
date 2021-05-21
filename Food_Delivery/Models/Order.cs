@@ -22,16 +22,18 @@ namespace Food_Delivery.Models
         [ForeignKey("FoodId")]
         public virtual Food Food { get; set; }
 
-        [Required]
+        //[Required]
         public string CustomerId { get; set; }
 
         [ForeignKey("CustomerId")]
+        [InverseProperty("Orders")]
         public virtual ApplicationUser Customer { get; set; }
 
-        [Required]
+        //[Required]
         public string EmployeeId { get; set; }
 
         [ForeignKey("EmployeeId")]
+        [InverseProperty("PendingDeliveries")]
         public virtual ApplicationUser Employee { get; set; }
     }
 }

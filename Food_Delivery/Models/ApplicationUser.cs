@@ -22,5 +22,9 @@ namespace Food_Delivery.Models
 
         //nullable
         public string Postion { get; set; }
+        
+        public ICollection<Order> Orders { get; set; }
+
+        public ICollection<Order> PendingDeliveries { get; set; }
     }
 }

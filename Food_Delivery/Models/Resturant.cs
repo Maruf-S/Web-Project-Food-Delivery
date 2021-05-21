@@ -21,6 +21,8 @@ namespace Food_Delivery.Models
 
         [DisplayName("Adress")]
         public string Address { get; set; }
-    
+
+        public ICollection<Food> Foods { get; set; }
+
     }
 }
