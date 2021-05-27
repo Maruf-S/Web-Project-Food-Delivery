@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Food_Delivery.Models;
@@ -10,6 +11,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 
 namespace Food_Delivery
@@ -60,6 +62,12 @@ namespace Food_Delivery
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                Path.Combine(env.ContentRootPath, "DocumentFiles")),
+                //RequestPath = "/Documents"
+            });
 
             app.UseRouting();
 
@@ -76,7 +84,7 @@ namespace Food_Delivery
                 endpoints.MapAreaControllerRoute(
                     name: "SystemAdminsCorner",
                     areaName: "SystemAdmin",
-                    pattern: "Admin/{controller=Home}/{action=Index}/{id?}");
+                    pattern: "Admin/{controller=Dashboard}/{action=Index}/{id?}");
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");

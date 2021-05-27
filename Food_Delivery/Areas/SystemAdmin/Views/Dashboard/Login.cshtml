@@ -1,0 +1,59 @@
+﻿@model Food_Delivery.Areas.SystemAdmin.Controllers.DashboardController.InputModel
+<div class="login-page container bg-transparent pb-lg-5" style="min-height: 495.6px;">
+    <div class="login-box pb-lg-5">
+        <div class="login-logo">
+            <a><b>Food </b>Delivery</a>
+        </div>
+        <!-- /.login-logo -->
+        <div class="card">
+            <div class="card-body login-card-body">
+                <p class="login-box-msg">Sign in to start your session</p>
+
+                <form asp-action="Login" method="post">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="mb-3">
+                        <div class="input-group ">
+                            <input asp-for="Email" class="form-control" placeholder="Email">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-envelope"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <div class="input-group">
+                            <input asp-for="Password" class="form-control" placeholder="Password">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-lock"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <span asp-validation-for="Password" class="text-danger"></span>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="icheck-primary">
+                                <input asp-for="RememberMe" type="checkbox" id="remember">
+                                <label for="remember">
+                                    Remember Me
+                                </label>
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-4">
+                            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

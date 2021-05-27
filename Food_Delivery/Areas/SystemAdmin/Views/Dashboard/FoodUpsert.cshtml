@@ -1,0 +1,210 @@
+﻿
+@model Food_Delivery.Models.Food;
+@{
+    ViewData["Title"] = "Foods";
+}
+
+
+@{
+    ViewData["Title"] = (Model.Id != 0 ? "Edit Food" : "Add Food");
+}
+<style>
+    .container-img {
+        max-width: 960px;
+        margin: 0px auto;
+        padding: 20px;
+        margin-top: -50px;
+    }
+
+    .avatar-upload {
+        position: relative;
+        max-width: 205px;
+        margin: 40px auto;
+    }
+
+        .avatar-upload .avatar-edit {
+            position: absolute;
+            right: 12px;
+            z-index: 1;
+            top: 10px;
+        }
+
+            .avatar-upload .avatar-edit input {
+                display: none;
+            }
+
+                .avatar-upload .avatar-edit input + label {
+                    display: inline-block;
+                    width: 34px;
+                    height: 34px;
+                    margin-bottom: 0;
+                    border-radius: 100%;
+                    background: #FFFFFF;
+                    border: 1px solid transparent;
+                    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+                    cursor: pointer;
+                    font-weight: normal;
+                    transition: all .2s ease-in-out;
+                    font-size: 1.5rem;
+                }
+
+                    .avatar-upload .avatar-edit input + label:hover {
+                        background: #f1f1f1;
+                        border-color: #d6d6d6;
+                    }
+
+        .avatar-upload .avatar-preview {
+            width: 192px;
+            height: 192px;
+            position: relative;
+            border-radius: 100%;
+            border: 6px solid #F8F8F8;
+            box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+        }
+
+            .avatar-upload .avatar-preview > div {
+                width: 100%;
+                height: 100%;
+                border-radius: 100%;
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+</style>
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-info">@(Model.Id != 0 ? "Edit Food" : "Add Food")</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Foods</a></li>
+                    <li class="breadcrumb-item active">@(Model.Id != 0 ? "Edit Food" : "Add Food")</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<div class="content">
+    <div class="border container" style="padding:30px;">
+        <form enctype="multipart/form-data" method="post" asp-action="FoodUpsert">
+            @*<div asp-validation-summary="All" class="text-danger"></div>*@
+            <br>
+            @if (Model.Id != 0)
+            {
+                <input type="hidden" asp-for="@Model.Id" />
+                <input type="hidden" asp-for="@Model.ImagePath" />
+            }
+            <div class="row">
+                <label class="col-3"></label>
+                <div class="col-6">
+                    <div class="container-img">
+                        <div class="avatar-upload">
+                            <div class="avatar-edit">
+                                <input asp-for="@Model.Image" type='file' id="imageUpload" accept="image/*" />
+                                <label for="imageUpload" class="text-center">✏</label>
+
+                            </div>
+                            @if (Model.ImagePath != null)
+                            {
+                                <div class="avatar-preview">
+                                    <div id="imagePreview" style="background-image: url(/Images/Foods/@Model.ImagePath);">
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="avatar-preview">
+                                    <div id="imagePreview" style="background-image: url(/Images/FoodPlaceholder.png);">
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <span asp-validation-for="@Model.Image" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-3">
+                    <label asp-for="@Model.ResturantId" class="control-label"></label>
+                </div>
+                <div class="col-6">
+                    <select asp-for="@Model.ResturantId" class="form-control" asp-items="ViewBag.Restaurant"></select>
+                    <span asp-validation-for="@Model.ResturantId" class="text-danger"></span>
+
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-3">
+                    <label asp-for="@Model.Name" class="control-label"></label>
+                </div>
+                <div class="col-6">
+                    <input asp-for="@Model.Name" class="form-control" />
+                    <span asp-validation-for="@Model.Name" class="text-danger"></span>
+
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-3">
+                    <label asp-for="@Model.Description" class="control-label"></label>
+                </div>
+                <div class="col-6">
+                    <textarea class="form-control" rows="5" placeholder="Description" asp-for="@Model.Description"></textarea>
+                    <span asp-validation-for="@Model.Description" class="text-danger"></span>
+
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-3">
+                    <label asp-for="@Model.Price" class="control-label"></label>
+                </div>
+                <div class="col-6">
+                    <input asp-for="@Model.Price" class="form-control" />
+                    <span asp-validation-for="@Model.Price" class="text-danger"></span>
+
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-3 offset-3">
+                    <input type="submit" value="@(Model.Id != 0 ? "Update" : "Create")" class="btn btn-primary form-control" />
+                </div>
+                <div class="col-3">
+                    <a asp-action="ManageFoods" class="btn btn-success form-control">Back to Foods List</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#imagePreview').css('background-image', 'url(' + e.target.result + ')');
+                    $('#imagePreview').hide();
+                    $('#imagePreview').fadeIn(650);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        $("#imageUpload").change(function () {
+            readURL(this);
+        });
+        $(document).ready(function () {
+            $('.custom-file-input').on("change", function () {
+                var fileName = $(this).val().split("\\").pop();
+                $(this).next('.custom-file-label').html(fileName);
+            });
+        });
+    </script>
+
+    <partial name="_ValidationScriptsPartial" />
+}
+
+
+
+

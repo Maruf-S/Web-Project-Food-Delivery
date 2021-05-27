@@ -27,6 +27,9 @@ namespace Food_Delivery.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
+                    b.Property<string>("CVdocumentPath")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
@@ -45,6 +48,9 @@ namespace Food_Delivery.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("GeoLocation")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImagePath")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
@@ -107,12 +113,14 @@ namespace Food_Delivery.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImagePath")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<double>("Price")
@@ -161,7 +169,7 @@ namespace Food_Delivery.Migrations
                     b.ToTable("Orders");
                 });
 
-            modelBuilder.Entity("Food_Delivery.Models.Resturant", b =>
+            modelBuilder.Entity("Food_Delivery.Models.Restaurant", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -169,6 +177,13 @@ namespace Food_Delivery.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateAdded")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ImagePath")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -180,7 +195,7 @@ namespace Food_Delivery.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Resturants");
+                    b.ToTable("Restaurants");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -320,7 +335,7 @@ namespace Food_Delivery.Migrations
 
             modelBuilder.Entity("Food_Delivery.Models.Food", b =>
                 {
-                    b.HasOne("Food_Delivery.Models.Resturant", "Resturant")
+                    b.HasOne("Food_Delivery.Models.Restaurant", "Resturant")
                         .WithMany("Foods")
                         .HasForeignKey("ResturantId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -410,7 +425,7 @@ namespace Food_Delivery.Migrations
                     b.Navigation("PendingDeliveries");
                 });
 
-            modelBuilder.Entity("Food_Delivery.Models.Resturant", b =>
+            modelBuilder.Entity("Food_Delivery.Models.Restaurant", b =>
                 {
                     b.Navigation("Foods");
                 });

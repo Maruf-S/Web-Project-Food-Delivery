@@ -26,6 +26,10 @@
   <ItemGroup>
     <Folder Include="Areas\Employee\Data\" />
     <Folder Include="Areas\Employee\Models\" />
+    <Folder Include="wwwroot\css\NewFolder\" />
+    <Folder Include="wwwroot\Images\Employees\" />
+    <Folder Include="wwwroot\Images\Foods\" />
+    <Folder Include="wwwroot\Images\Restaurants\" />
   </ItemGroup>
 
 </Project>
