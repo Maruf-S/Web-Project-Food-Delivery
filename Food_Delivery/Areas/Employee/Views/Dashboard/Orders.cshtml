@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Food_Delivery.Models.Restaurant>
+﻿@model IEnumerable<Food_Delivery.Models.Order>
 
 @{
     ViewData["Title"] = "ManageRestaurants";
@@ -23,12 +23,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0 text-info">Manage Restaurants</h1>
+                <h1 class="m-0 text-info">Manage Orders</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Restaurants</a></li>
-                    <li class="breadcrumb-item active">Manage Restaurants</li>
+                    <li class="breadcrumb-item"><a href="#">Employee</a></li>
+                    <li class="breadcrumb-item active">Orders</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -43,7 +43,7 @@
                 <!-- /.card -->
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title text-muted">Restaurants List</h3>
+                        <h3 class="card-title text-muted">Orders for you</h3>
 
                     </div>
                     <!-- /.card-header -->
@@ -51,49 +51,56 @@
                         <table id="DTable" class="table table-bordered table-hover">
                             <thead class="thead-dark">
                                 <tr>
-                                    <th> </th>
-                                    <th>Restaurant Name</th>
-                                    <th>Restaurant Adress</th>
-                                    <th>Date Added</th>
-                                    <th>Actions</th>
+                                    <th>Food Id</th>
+                                    <th>Customer Id</th>
+                                    <th>Quantity</th>
+                                    <th>Delivery Location</th>
+                                    <th>Status</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach (var item in Model)
                                 {
-                                    <tr>
-                                        <td>
-                                            @if (@item.ImagePath != null)
-                                            {
-
-                                                <img src="~/Images/Restaurants/@item.ImagePath" class="avatarImg elevation-2" alt="User Image"> }
-                                            else
-                                            {
-                                                <img src="~/Images/RestaurantPlaceholderpng.png" class="avatarImg elevation-2" alt="User Image">}
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Name)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Address)
-                                        </td>
-                                        <td>
-                                            @item.DateAdded.ToString("MM/dd/yyyy")
-                                        </td>
-                                        <td>
-                                            @*<a asp-action="GetCVDoc" asp-route-id="@item.Id" class="btn text-success" data-toggle="tooltip" data-placement="top" title="Download CV"><i class="fas fa-download"></i></a>*@
-                                            <a asp-action="RestaurantUpsert" asp-route-id="@item.Id" class="btn text-success" data-toggle="tooltip" data-placement="top" title="Edit Restaurant"><i class="fas fa-user-edit"></i></a>
-                                        </td>
-                                    </tr>
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.FoodId)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CustomerId)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Quantity)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DeliveryLoc)
+                                    </td>
+                                    <td>
+                                        @item.DatePlaced.ToString("MM/dd/yyyy")
+                                    </td>
+                                    <td>
+                                        @if (item.Delivered)
+                                        {
+                                            @Html.DisplayText("Delivered")
+                                        }
+                                        else
+                                        {
+                                            @Html.DisplayText("Pending")
+                                        }
+                                    </td>
+                                    <td>
+                                        @*<a asp-action="GetCVDoc" asp-route-id="@item.Id" class="btn text-success" data-toggle="tooltip" data-placement="top" title="Download CV"><i class="fas fa-download"></i></a>*@
+                                        <a asp-action="RestaurantUpsert" asp-route-id="@item.Id" class="btn text-success" data-toggle="tooltip" data-placement="top" title="Edit Restaurant"><i class="fas fa-user-edit"></i></a>
+                                    </td>
+                                </tr>
                                 }
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th> </th>
-                                    <th>Restaurant Name</th>
-                                    <th>Restaurant Adress</th>
-                                    <th>Date Added</th>
-                                    <th>Actions</th>
+                                    <th>Food Id</th>
+                                    <th>Customer Id</th>
+                                    <th>Quantity</th>
+                                    <th>Delivery Location</th>
+                                    <th>Status</th>
                                 </tr>
                             </tfoot>
                         </table>
