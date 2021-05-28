@@ -80,7 +80,7 @@ namespace Food_Delivery
                 endpoints.MapAreaControllerRoute(
                     name: "employeesCorner",
                     areaName:"Employee",
-                    pattern: "Employee/{controller=Home}/{action=Index}/{id?}");
+                    pattern: "Employee/{controller=Dashboard}/{action=Index}/{id?}");
                 endpoints.MapAreaControllerRoute(
                     name: "SystemAdminsCorner",
                     areaName: "SystemAdmin",

@@ -46,6 +46,7 @@ namespace Food_Delivery.Areas.SystemAdmin.Controllers
         [HttpGet]
         public IActionResult Index()
         {
+            /////////////////////////////////////////////////////////////////////////////////////////////////////////
             return View();
         }
 
@@ -134,7 +135,7 @@ namespace Food_Delivery.Areas.SystemAdmin.Controllers
                         //    //var x = role.ToString();
                         //    await _userManager.AddToRoleAsync(user, role.ToString());
                         //}
-                        return RedirectToAction(nameof(ManageEmployees));
+                        return RedirectToAction(nameof(Index));
                     }
                     else {
                         foreach (var error in result.Errors)
