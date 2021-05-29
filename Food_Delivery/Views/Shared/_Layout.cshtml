@@ -1,51 +1,105 @@
-﻿<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Food_Delivery</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+﻿@*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
-</head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Food_Delivery</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                    <ul class="navbar-nav">
-                        <partial name="_LoginPartial" />
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2021 - Food_Delivery - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+    @await RenderSectionAsync("Scripts", required: false)*@
+
+<!DOCTYPE html>
+<html class="no-js">
+ <!--<![endif]-->
+<head>
+    <title>Dream Delivery - @ViewData["Title"]</title>
+
+    <!-- meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+
+    <!-- css -->
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/Home/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Home/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="~/Home/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Home/css/main.css">
+
+    @RenderSection("PageCss",required:false)
+    <!-- google font -->
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Kreon:300,400,700'>
+</head>
+<body data-spy="scroll" data-target="#navbar" data-offset="120">
+
+
+    <div id="menu" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header visible-xs">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#"><h2>Dream Delivery</h2></a>
+            </div><!-- navbar-header -->
+            <div id="navbar" class="navbar-collapse collapse">
+                <div class="hidden-xs" id="logo">
+                    <a id="home" href="index.html">
+                        <img src="~/Home/img/logo.png" alt="">
+                    </a>
+                </div>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a class="external" href="#story">Story</a></li>
+                    <li><a id="restorant" class="external" href="restaurants.html">Restorants</a></li>
+                    <li><a href="#chefs">Our Chefs</a></li>
+
+
+                    <li ><a href="#special-offser">Special Offers</a></li>
+                    <li><a href="#food-menu">Food Menu</a></li>
+                    <li><a id="cart" href="cart.html"><span class="glyphicon glyphicon-shopping-cart" /> Cart</a></li>
+
+                    <!--fix for scroll spy active menu element-->
+                    <li style="display:none;"><a href=""></a></li>
+
+                </ul>
+            </div><!--/.navbar-collapse -->
+        </div><!-- container -->
+    </div><!-- menu -->
+    @RenderBody()
+    <footer id="footer" class="dark-wrapper">
+        <section class="ss-style-top"></section>
+        <div class="container inner">
+            <div class="row">
+                <div class="col-sm-6">
+                    &copy; Copyright Dream Team 2021
+                    <br />By Dream Team
+                </div>
+                <div class="col-sm-6">
+                    <div class="social-bar">
+                        <a href="#" class="fa fa-instagram tooltipped" title=""></a>
+                        <a href="#" class="fa fa-youtube-square tooltipped" title=""></a>
+                        <a href="#" class="fa fa-facebook-square tooltipped" title=""></a>
+                        <a href="#" class="fa fa-pinterest-square tooltipped" title=""></a>
+                        <a href="#" class="fa fa-google-plus-square tooltipped" title=""></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.container -->
+    </footer>
+
+    <script src="~/Home/js/jquery-2.1.3.min.js"></script>
+    <script src="~/Home/js/jquery.actual.min.js"></script>
+    <!-- js -->
+    <script src="~/Home/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+    <script src="~/Home/js/jquery.scrollTo.min.js"></script>
+    <script src="~/Home/js/bootstrap.min.js"></script>
+    <script src="~/Home/js/main.js"></script>
+    @RenderSection("Scripts", required: false)
+
 </body>
 </html>

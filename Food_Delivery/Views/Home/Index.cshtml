@@ -1,8 +1,220 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home";
 }
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+@section PageCss{
+    <link rel="stylesheet" href="~/Home/css/base.css">
+ }
+<div id="header">
+    <div class="bg-overlay"></div>
+    <div class="center text-center">
+        <!-- <div class="banner">
+            <h1 class="">Meat King</h1>
+        </div>
+        <div class="subtitle"><h4>AWESOME RESTAURANT THEME</h4></div> -->
+        <div class="container">
+            <h1 class="banner">Order Delivery & Take-Out </h1>
+            <p><h3>Find restaurants, specials, and coupons for free</h3></p>
+            <input id="location" name="location" type="text" placeholder="Search for Food or Resturant" value="" class="pac-target-input" autocomplete="off">
+            <!-- <button type="submit" id="submit" ><span>Search <i class="fa fa-search fa-2x"></i></span></button> -->
+            <input type="submit" value="Search">
+            <img id="steps" src="~/Home/img/steps.png" alt="">
+        </div>
+    </div>
+    <div class="bottom text-center">
+        <a id="scrollDownArrow" href="#"><i class="fa fa-chevron-down"></i></a>
+    </div>
 </div>
+<!-- /#header -->
+<!-- our story and facts on notes -->
+
+
+
+
+<div id="food-menu" class="light-wrapper">
+    <section class="ss-style-top"></section>
+    <div class="container inner">
+        <h2 class="section-title text-center">Featured restaurants</h2>
+        <p class="lead main text-center">Nothing brings people together like good food.</p>
+
+        <div class="row">
+            <div class="col-sm-3 col-md-3">
+                <div class="menu-images "><a href="detail.html?id=1"><img src="~/Home/img/restorants/res1.jpg" alt="Hot Drinks"></a></div>
+                <div class="menu-titles">
+                    <h3 class="">
+                        Central pizzeria
+                    </h3>
+                </div>
+                <div class="menu-items ">
+                    <p>Burgers, American, Sandwiches, Fast Food, BBQ, Breakfast</p>
+                </div>
+                <span id="restorant_location">68 5th Avenue   <span class="rating"></span> </span>
+            </div>
+            <div class="col-sm-3 col-md-3">
+                <div class="menu-images "><a href="detail.html?id=2"><img src="~/Home/img/restorants/res2.jpg" alt="Ice Drinks"></a></div>
+                <div class="menu-titles">
+                    <h3 class="">
+                        Fabio al porto ristorante
+                    </h3>
+                </div>
+                <div class="menu-items ">
+                    <p>Burgers, American, Sandwiches, Fast Food, BBQ, Breakfast</p>
+                </div>
+                <span id="restorant_location">68 5th Avenue   <span class="rating"></span> </span>
+            </div>
+            <div class="col-sm-3 col-md-3">
+                <div class="menu-images "><a href="detail.html?id=3"><img src="~/Home/img/restorants/res3.jpg" alt="Smoothies"></a></div>
+                <div class="menu-titles"><h3 class="">Tratoria due Sarajevo</h3></div>
+                <div class="menu-items ">
+                    <p>Burgers, American, Sandwiches, Fast Food, BBQ, Breakfast</p>
+                </div>
+                <span id="restorant_location">68 5th Avenue   <span class="rating"></span> </span>
+            </div>
+            <div class="col-sm-3 col-md-3">
+                <div class="menu-images "><a href="detail.html?id=4"><img src="~/Home/img/restorants/res4.jpg" alt="Deserts"></a></div>
+                <div class="menu-titles"><h3 class="">Central caffe pizzeria</h3></div>
+                <div class="menu-items ">
+                    <p>Burgers, American, Sandwiches, Fast Food, BBQ, Breakfast</p>
+                </div>
+                <span id="restorant_location">68 5th Avenue   <span class="rating"></span> </span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-3 col-md-3">
+                <div class="menu-images "><a href="detail.html?id=5"><img src="~/Home/img/restorants/res5.jpg" alt="Hot Drinks"></a></div>
+                <div class="menu-titles"><h3 class="">Jagnetina na raznju</h3></div>
+                <div class="menu-items ">
+                    <p>Burgers, American, Sandwiches, Fast Food, BBQ, Breakfast</p>
+                </div>
+                <span id="restorant_location">68 5th Avenue   <span class="rating"></span> </span>
+            </div>
+            <div class="col-sm-3 col-md-3">
+                <div class="menu-images "><a href="detail.html?id=6"><img src="~/Home/img/restorants/res6.jpg" alt="Ice Drinks"></a></div>
+                <div class="menu-titles"><h3 class="">Maenaam Thai Restaurant</h3></div>
+                <div class="menu-items ">
+                    <p>Burgers, American, Sandwiches, Fast Food, BBQ, Breakfast</p>
+                </div>
+                <span id="restorant_location">68 5th Avenue   <span class="rating"></span> </span>
+            </div>
+            <div class="col-sm-3 col-md-3">
+                <div class="menu-images "><a href="detail.html?id=7"><img src="~/Home/img/restorants/res7.jpg" alt="Smoothies"></a></div>
+                <div class="menu-titles">
+                    <h3 class="">
+                        Central pizzeria
+                    </h3>
+                </div>
+                <div class="menu-items ">
+                    <p>Burgers, American, Sandwiches, Fast Food, BBQ, Breakfast</p>
+                </div>
+                <span id="restorant_location">68 5th Avenue   <span class="rating"></span> </span>
+            </div>
+            <div class="col-sm-3 col-md-3">
+                <div class="menu-images "><a href="detail.html?id=8"><img src="~/Home/img/restorants/res8.jpg" alt="Deserts"></a></div>
+                <div class="menu-titles"><h3 class="">Central caffe pizzeria</h3></div>
+                <div class="menu-items ">
+                    <p>Burgers, American, Sandwiches, Fast Food, BBQ, Breakfast</p>
+                </div>
+                <span id="restorant_location">68 5th Avenue   <span class="rating"></span> </span>
+            </div>
+        </div>
+
+    </div>
+    <!-- /.container -->
+    <section class="ss-style-bottom"></section>
+</div><!--/#food-menu-->
+
+
+
+
+<div id="special-offser" class="parallax pricing">
+    <div class="container inner">
+
+        <h2 class="section-title text-center">Special Offers</h2>
+        <p class="lead main text-center">There is no sincerer love than the love of food!</p>
+
+        <div class="row">
+            <div class="col-md-6 col-sm-6">
+
+                <div class="pricing-item">
+
+                    <a href="#"><img class="img-responsive img-thumbnail" src="~/Home/img/dish/dish3.jpg" alt=""></a>
+
+                    <div class="pricing-item-details">
+
+                        <h3><a href="#">Chicken Fried Rice</a></h3>
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+                        <a class="btn btn-danger" href="#">Order now</a>
+                        <div class="clearfix"></div>
+                    </div>
+                    <!--price tag-->
+                    <span class="hot-tag br-red">$26</span>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <div class="pricing-item">
+
+                    <a href="#"><img class="img-responsive img-thumbnail" src="~/Home/img/dish/dish2.jpg" alt=""></a>
+
+                    <div class="pricing-item-details">
+
+                        <h3><a href="#">Hot Fried Chicken</a></h3>
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+                        <a class="btn btn-danger" href="#">Order now</a>
+                        <div class="clearfix"></div>
+                    </div>
+                    <!--price tag-->
+                    <span class="hot-tag br-lblue">$37</span>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="clearfix visible-md"></div>
+            <div class="col-md-6 col-sm-6">
+
+                <div class="pricing-item">
+
+                    <a href="#"><img class="img-responsive img-thumbnail" src="~/Home/img/dish/dish4.jpg" alt=""></a>
+
+                    <div class="pricing-item-details">
+
+                        <h3><a href="#">Thi Chicken Momo</a></h3>
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+                        <a class="btn btn-danger" href="#">Order now</a>
+                        <div class="clearfix"></div>
+                    </div>
+                    <!--price tag-->
+                    <span class="hot-tag br-green">$54</span>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+
+                <div class="pricing-item">
+
+                    <a href="#"><img class="img-responsive img-thumbnail" src="~/Home/img/dish/dish1.jpg" alt=""></a>
+
+                    <div class="pricing-item-details">
+
+                        <h3><a href="#">Cocktail Sushi</a></h3>
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+                        <a class="btn btn-danger" href="#">Order now</a>
+                        <div class="clearfix"></div>
+                    </div>
+                    <!--price tag-->
+                    <span class="hot-tag br-red">$27</span>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- /.container -->
+</div><!-- /#special-offser -->

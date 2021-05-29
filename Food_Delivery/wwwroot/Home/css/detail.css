@@ -1,0 +1,75 @@
+/* detail images */
+body{
+    overflow-x: hidden;
+}
+.search_food{
+    margin-top: 0;
+    float: right;
+}
+
+h3{
+    color: white;
+}
+.detail_rating{
+    padding-left: 5rem;
+}
+#location{
+    font-size: large;
+    margin-right: 0.7%;
+    line-height: 55px;
+    height: 40px;
+    width: 60%;
+    /* padding: 0 30px; */
+    border: none;
+    background-color: #f2f1f3;
+}
+input[type=submit]{
+    font-size: large;
+    background-color: #e8500e;
+    height: 40px;
+    width: 30%;
+    border: none;
+    padding: 0 60px 0 30px;
+    border-radius: 3px;
+    color: #ffffff;
+    cursor: pointer;
+}
+.detail_header{
+    background: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6) ), url(../img/restorants/details/middle1.jpg);
+    position: relative;
+    min-height: 389px;
+    box-sizing: border-box;
+    padding-top: 100px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: #ffffff;
+    overflow: hidden;
+}
+
+.item{
+    padding-left: 15rem;
+    padding-top: 5rem;
+}
+.details{
+    padding-left: 27rem;
+}
+.location{
+    color: #ffffff;
+}
+
+.item img {
+    max-width:250px;
+    float:left;
+}
+.parallax{
+    background-image: none;
+    /* background-image: url(../img/restorants/details/list.png); */
+}
+.parallax h2, .parallax h3, .parallax p, .parallax a{
+    color: black;
+}
+.pricing .lead {
+    color:rgb(0, 0, 0);
+}
+

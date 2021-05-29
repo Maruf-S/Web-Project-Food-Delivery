@@ -1,0 +1,108 @@
+﻿@section PageCss{
+    <link rel="stylesheet" href="~/Home/css/restaurant.css">
+    <link rel="stylesheet" href="~/Home/css/cart.css">
+}
+<!-- <div id="header"> -->
+<div class="res_header">
+    <div class="center text-center">
+        <div class="container">
+            <p><h1 class="titleR">Search Food</h1></p>
+            <p class="detailR">Find restaurants, specials, and coupons for free</p>
+            <input id="location" name="location" type="text" placeholder="Search for Resturant" value="" class="pac-target-input" autocomplete="off">
+            <!-- <button type="submit" id="submit" ><span>Search <i class="fa fa-search fa-2x"></i></span></button> -->
+            <input type="submit" value="Search">
+        </div>
+    </div>
+</div>
+
+<!-- </div> -->
+<!-- /#header -->
+
+<div id="special-offser" class="parallax pricing">
+    <div class="container inner">
+
+        <h2 class="section-title text-center">Selected Foods</h2>
+        <p class="lead main text-center">Its time to take the price home</p>
+
+        <div class="row">
+            <div class="col-md-6 col-sm-6">
+
+                <div class="pricing-item">
+
+                    <img class="img-responsive img-thumbnail" src="~/Home/img/dish/dish3.jpg" alt="">
+
+                    <div class="pricing-item-details">
+
+                        <h3><input type="checkbox" aria-label="..."> Chicken Fried Rice</h3>
+                        <div id="quantity">
+                            Quantity:
+                            <form id="numberForm">
+                                <div class="form-group form-group-sm " id="sel1">
+                                    <select class="form-control" id="sel11">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+                        <div>
+                            <span class="btn btn-danger glyphicon glyphicon-trash trash"></span>
+                            <a class="btn btn-primary" href="#">Check Out</a>
+                        </div>
+
+                        <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p> -->
+
+                        <div class="clearfix"></div>
+                    </div>
+                    <!--price tag-->
+                    <span class="hot-tag br-red">$26</span>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+
+                <div class="pricing-item">
+
+                    <img class="img-responsive img-thumbnail" src="~/Home/img/dish/dish2.jpg" alt="">
+
+                    <div class="pricing-item-details">
+
+                        <h3><input type="checkbox" aria-label="..."> Hot Fried Chicken</h3>
+                        <div id="quantity">
+                            Quantity:
+                            <form id="numberForm">
+                                <div class="form-group form-group-sm " id="sel1">
+                                    <select class="form-control" id="sel11">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+                        <div>
+                            <span class="btn btn-danger glyphicon glyphicon-trash trash"></span>
+                            <a class="btn btn-primary" href="#">Check Out</a>
+                        </div>
+
+                        <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p> -->
+
+
+                        <div class="clearfix"></div>
+                    </div>
+                    <!--price tag-->
+                    <span class="hot-tag br-lblue">$37</span>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script src="js/restourant.js"></script>
+}
