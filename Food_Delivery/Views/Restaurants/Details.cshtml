@@ -1,210 +1,263 @@
-﻿@model Restaurant
-    <style>
-        .rate {
-            float: left;
-            pointer-events: none;
-        }
+﻿
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<ApplicationUser> UserManager
+@model Restaurant
+<section class="pager-section text-center">
+    <div class="fixed-bg bg4"></div>
+    <div class="container">
+        <div class="pager-head">
+            <h2>bulgarian restaurant</h2>
+            <ul>
+                <li><a href="#" title="">Home</a></li>
+                <li><a href="#" title="">Restaurants</a></li>
+                <li><span>bulgarian restaurant</span></li>
+            </ul>
+        </div><!--pager-head end-->
+    </div>
+</section><!--pager-section end-->
 
-            .rate:not(:checked) > input {
-                position: absolute;
-                top: -9999px;
-            }
-
-            .rate:not(:checked) > label {
-                float: right;
-                width: 1em;
-                overflow: hidden;
-                white-space: nowrap;
-                cursor: pointer;
-                font-size: 30px;
-                color: #ccc;
-            }
-
-                .rate:not(:checked) > label:before {
-                    content: '★ ';
-                }
-
-            .rate > input:checked ~ label {
-                color: #ffc700;
-            }
-
-            .rate:not(:checked) > label:hover,
-            .rate:not(:checked) > label:hover ~ label {
-                color: #deb217;
-            }
-
-            .rate > input:checked + label:hover,
-            .rate > input:checked + label:hover ~ label,
-            .rate > input:checked ~ label:hover,
-            .rate > input:checked ~ label:hover ~ label,
-            .rate > label:hover ~ input:checked ~ label {
-                color: #c59b08;
-            }
-    </style>
-        <section class="pager-section text-center">
-            <div class="fixed-bg bg4"></div>
-            <div class="container">
-                <div class="pager-head">
-                    <h2>bulgarian restaurant</h2>
-                    <ul>
-                        <li><a href="#" title="">Home</a></li>
-                        <li><a href="#" title="">Restaurants</a></li>
-                        <li><span>bulgarian restaurant</span></li>
-                    </ul>
-                </div><!--pager-head end-->
+<section class="sec-block">
+    <div class="container">
+        <div class="restaurant-details">
+            <div class="food-thumbail-large">
+                <img src="~/Images/Restaurants/@Model.LargeImagePath" alt="" class="w-100">
+                @*<div class="pl-logo">
+                                                <img src="https://via.placeholder.com/150x150
+                    " alt="">
+                                            </div>*@
             </div>
-        </section><!--pager-section end-->
-
-        <section class="sec-block">
-            <div class="container">
-                <div class="restaurant-details">
-                    <div class="food-thumbail-large">
-                        <img src="~/Images/Restaurants/@Model.LargeImagePath" alt="" class="w-100">
-                        @*<div class="pl-logo">
-                            <img src="https://via.placeholder.com/150x150
-" alt="">
-                        </div>*@
-                    </div>
-                    <div class="food-info">
-                        <ul class="meta">
-                            <li>
-                                <img src="~/assets/images/icons/calendar.svg" alt="">
-                                <span>Monday - Sunday</span>
-                            </li>
-                            <li>
-                                <img src="~/assets/images/icons/clock.svg" alt="">
-                                <span>9:00am - 11:00pm</span>
-                            </li>
-                            <li>
-                                <span>3 Reviews</span>
-                                <ul class="rating">
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                </ul>
-                            </li>
+            <div class="food-info">
+                <ul class="meta">
+                    <li>
+                        <img src="~/assets/images/icons/calendar.svg" alt="">
+                        <span>Monday - Sunday</span>
+                    </li>
+                    <li>
+                        <img src="~/assets/images/icons/clock.svg" alt="">
+                        <span>9:00am - 11:00pm</span>
+                    </li>
+                    <li>
+                        <span>3 Reviews</span>
+                        <ul class="rating">
+                            <li><i class="fa fa-star"></i></li>
+                            <li><i class="fa fa-star"></i></li>
+                            <li><i class="fa fa-star"></i></li>
+                            <li><i class="fa fa-star"></i></li>
+                            <li><i class="fa fa-star"></i></li>
                         </ul>
-                        <p>@Model.Description</p>
-                        @*<p>Consequat excepteur eu veniam sunt duis ut do pariatur voluptate ex fugiat. Sit exercitation occaecat exercitation officia enim exercitation sunt. Exercitation pariatur ipsum magna occaecat quis eiusmod magna. Non nulla commodo laborum magna id. Deserunt irure amet adipisicing adipisicing veniam nostrud Lorem anim non voluptate culpa sit. Et veniam dolor reprehenderit non. Ut laboris pariatur tempor pariatur pariatur ad enim veniam duis. Exercitation sint eiusmod amet reprehenderit ipsum</p>*@
-                    </div>
-                </div><!--restaurant-details end-->
+                    </li>
+                </ul>
+                <p>@Model.Description</p>
+                @*<p>Consequat excepteur eu veniam sunt duis ut do pariatur voluptate ex fugiat. Sit exercitation occaecat exercitation officia enim exercitation sunt. Exercitation pariatur ipsum magna occaecat quis eiusmod magna. Non nulla commodo laborum magna id. Deserunt irure amet adipisicing adipisicing veniam nostrud Lorem anim non voluptate culpa sit. Et veniam dolor reprehenderit non. Ut laboris pariatur tempor pariatur pariatur ad enim veniam duis. Exercitation sint eiusmod amet reprehenderit ipsum</p>*@
             </div>
-        </section>
+        </div><!--restaurant-details end-->
+    </div>
+</section>
 
-        <section class="sec-block p-0">
-            <div class="container">
-                <div class="section-title text-center">
-                    <span>Amazing taste </span>
-                    <h2 class="text-capitalize">Menu</h2>
-                </div><!--sec-title end-->
-                <div class="popular-dishes style2 text-center">
-                    <!--<div class="options">
-                        <div class="option-isotop">
-                            <ul id="filter" class="option-set filters-nav" data-option-key="filter">
-                                <li><a class="selected" data-option-value=".meat">Meat</a></li>
-                                <li><a data-option-value=".pizza">Pizza</a></li>
-                                <li><a data-option-value=".fastfood">Fastfood</a></li>
-                                <li><a data-option-value=".sushi">Sushi</a></li>
-                                <li><a data-option-value=".vegitarian">Vegitarian food</a></li>
-                            </ul>
-                        </div>
-                    </div>--><!--options end-->
-                    <div class="row">
-                        <div class="masonary">
-                            @foreach (var item in Model.Foods)
-                            {
-                                <div class="col-lg-4 col-md-4 col-sm-6 meat">
-                                    <div class="pd-item">
-                                        <div class="pd-thumbnail">
-                                            <img src="~/Images/Foods/@item.ImagePath" alt="" class="w-100">
-                                        </div>
-                                        <h3 class="semi-bold text-capitalize"><a href="#" title="">@item.Name</a> </h3>
-                                        <p>@item.Description</p>
-                                        <strong class="semi-bold">@item.Price ETB</strong>
-                                        <a href="cart.html" title="" class="btn-default gradient-bg half-radius height-2">Add to cart <span></span></a>
-                                    </div>
-                                </div>
-                            }
-                        </div><!--masonary end-->
-
-                    </div>
-                </div><!--popular-dishes end-->
-            </div>
-        </section>
-
-        <section class="sec-block">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8">
-                        <div class="feedback-section">
-                            @if (Model.Ratings!=null)
-                            {
-                                <h2>Feedbacks (@Model.Ratings.Count)</h2>
-                                <div class="testimonials-list">
-                                    @foreach (var item in Model.Ratings)
-                                    {
-                                        <div class="test-monial">
-                                            <div class="testi_head">
-                                                <ul>
-                                                    <li>
-                                                        <img src="~/Images/placeholderimage.png" alt="">
-                                                        <span>@item.Name</span>
-                                                    </li>
-                                                    <li>
-                                                        @item.DateRated.ToShortDateString()
-                                                    </li>
-                                                    <li>
-                                                        <ul class="rating">
-                                                            @for (int i = 0; i < item.RatingN; i++)
-                                                            {
-                                                                <li><i class="fa fa-star"></i></li>
-                                                            }
-
-                                                        </ul>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                           <p>@item.Review</p>
-                                        </div><!--test-monial end-->
-                                    }
-
-                                </div>
-                            }
-                        </div><!--feedback section end-->
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="sidebar">
-                            <div class="widget widget-review">
-                                <h3 class="widget-title">Leave a review</h3>
-                                <form method="post">
-                                    <input type="text" name="Name" placeholder="Name*" class="half-radius">
-                                    <textarea name="Review" placeholder="Write a review" required></textarea>
-                                     @*<ul class="rating d-block">
-                                        <li><i class="far fa-star"></i></li>
-                                        <li><i class="far fa-star"></i></li>
-                                        <li><i class="far fa-star"></i></li>
-                                        <li><i class="far fa-star"></i></li>
-                                        <li><i class="far fa-star"></i></li>
-                                    </ul>*@
-                                    <div class="rate">
-                                        <input type="radio" id="star5" name="rate" value="5" checked />
-                                        <label for="star5" title="text">5 stars</label>
-                                        <input type="radio" id="star4" name="rate" value="4" />
-                                        <label for="star4" title="text">4 stars</label>
-                                        <input type="radio" id="star3" name="rate" value="3" />
-                                        <label for="star3" title="text">3 stars</label>
-                                        <input type="radio" id="star2" name="rate" value="2" />
-                                        <label for="star2" title="text">2 stars</label>
-                                        <input type="radio" id="star1" name="rate" value="1" />
-                                        <label for="star1" title="text">1 star</label>
-                                    </div>
-                                    <button type="submit" class="btn-default half-radius">Submit <span></span></button>
-                                </form>
-                            </div><!--widget-review end-->
-                        </div><!--sidebar end-->
-                    </div>
+<section class="sec-block p-0">
+    <div class="container">
+        <div class="section-title text-center">
+            <span>Amazing taste </span>
+            <h2 class="text-capitalize">Menu</h2>
+        </div><!--sec-title end-->
+        <div class="popular-dishes style2 text-center">
+            <!--<div class="options">
+                <div class="option-isotop">
+                    <ul id="filter" class="option-set filters-nav" data-option-key="filter">
+                        <li><a class="selected" data-option-value=".meat">Meat</a></li>
+                        <li><a data-option-value=".pizza">Pizza</a></li>
+                        <li><a data-option-value=".fastfood">Fastfood</a></li>
+                        <li><a data-option-value=".sushi">Sushi</a></li>
+                        <li><a data-option-value=".vegitarian">Vegitarian food</a></li>
+                    </ul>
                 </div>
+            </div>-->
+            <!--options end-->
+            <div class="row">
+                <div class="masonary">
+                    @foreach (var item in Model.Foods)
+                    {
+                        <div class="col-lg-4 col-md-4 col-sm-6 meat">
+                            <div class="pd-item">
+                                <div class="pd-thumbnail">
+                                    <img src="~/Images/Foods/@item.ImagePath" alt="" class="w-100">
+                                </div>
+                                <h3 class="semi-bold text-capitalize"><a href="#" title="">@item.Name</a> </h3>
+                                <p>@item.Description</p>
+                                <strong class="semi-bold">@item.Price ETB</strong>
+                                <a href="cart.html" title="" class="btn-default gradient-bg half-radius height-2">Add to cart <span></span></a>
+                            </div>
+                        </div>
+                    }
+                </div><!--masonary end-->
+
             </div>
-        </section>
+        </div><!--popular-dishes end-->
+    </div>
+</section>
+
+<section class="sec-block">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="feedback-section">
+                    <h2>Feedbacks (@Model.Ratings.Count)</h2>
+                    <div class="testimonials-list">
+                        @foreach (var item in Model.Ratings)
+                        {
+                            <div class="test-monial">
+                                <div class="testi_head">
+                                    <ul>
+                                        <li>
+                                            @if (item.User.ImagePath != null)
+                                            {
+                                                <img src="~/Images/Employees/@item.User.ImagePath" alt="">
+                                            }
+                                            else
+                                            {
+                                                <img src="~/Images/placeholderimage.png" alt="">
+                                            }
+                                            <span>@item.User.FirstName @item.User.FirstName</span>
+                                        </li>
+                                        <li>
+                                            @item.DateRated.ToShortDateString()
+                                        </li>
+                                        <li>
+                                            <ul class="rating">
+                                                @for (int i = 0; i < item.RatingN; i++)
+                                                {
+                                                    <li><i class="fa fa-star"></i></li>
+                                                }
+
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <p>@item.Review</p>
+                            </div><!--test-monial end-->
+                        }
+
+                    </div>
+
+                </div><!--feedback section end-->
+            </div>
+            <div class="col-lg-4">
+                <div class="sidebar">
+                    <div class="widget widget-review">
+                        <h3 class="widget-title">Leave a review</h3>
+                        <form method="post" asp-controller="Restaurants" asp-action="Rate">
+                            <input type="hidden" asp-for="@Model.Id" name="ResturantId" />
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <input type="hidden" name="UserId" value="@UserManager.FindByNameAsync(User.Identity.Name).Result.Id" />
+                            }
+                            else
+                            {
+                                <input type="hidden" name="UserId" />
+                            }
+                            <textarea name="Review" placeholder="Write a review" required></textarea>
+                                <div class="rate d-block float-left">
+                                    <input type="radio" id="star5" name="RatingN" value="5" checked />
+                                    <label for="star5"><i class="far fa-star"></i></label>
+                                    <input type="radio" id="star4" name="RatingN" value="4" />
+                                    <label for="star4"><i class="far fa-star"></i></label>
+                                    <input type="radio" id="star3" name="RatingN" value="3" />
+                                    <label for="star3"><i class="far fa-star"></i></label>
+                                    <input type="radio" id="star2" name="RatingN" value="2" />
+                                    <label for="star2"><i class="far fa-star"></i></label>
+                                    <input type="radio" id="star1" name="RatingN" value="1" />
+                                    <label for="star1"><i class="far fa-star"></i></label>
+                            </div>
+                            @*<ul class="rating d-block">
+            <li><i class="far fa-star"></i></li>
+            <li><i class="far fa-star"></i></li>
+            <li><i class="far fa-star"></i></li>
+            <li><i class="far fa-star"></i></li>
+            <li><i class="far fa-star"></i></li>
+        </ul>*@
+                        <div class="container mt-4 pt-2 px-0 mx-0">
+                            <button type="submit" class="btn-default half-radius">Submit <span></span></button>
+                        </div>
+                        </form>
+                    </div><!--widget-review end-->
+                </div><!--sidebar end-->
+            </div>
+        </div>
+    </div>
+</section>
+ @section PageCss{ 
+     <style>
+         /* Star Rating */
+
+         .rate:not(:checked) > input {
+             position: absolute;
+             left: -10000px;
+         }
+
+             .rate:not(:checked) > label {
+                 float: right;
+                 width: 1.5em;
+                 overflow: hidden;
+                 white-space: nowrap;
+                 cursor: pointer;
+                 font-size: 14px;
+                 color: #ccc;
+             }
+
+/*                 .rate:not(:checked) > label:before {
+                     content: '★ ';
+                 }*/
+
+             .rate > input:checked ~ label {
+                 color: #ffc700;
+             }
+
+             .rate:not(:checked) > label:hover,
+             .rate:not(:checked) > label:hover ~ label {
+                 color: #deb217;
+             }
+
+             .rate > input:checked + label:hover,
+             .rate > input:checked + label:hover ~ label,
+             .rate > input:checked ~ label:hover,
+             .rate > input:checked ~ label:hover ~ label,
+             .rate > label:hover ~ input:checked ~ label {
+                 color: #c59b08;
+             }
+
+         .rate-container {
+             text-align: center;
+         }
+
+         .r {
+             float: left;
+         }
+
+         .s {
+             float: left;
+         }
+
+         .sub {
+             color: white !important;
+             float: left;
+         }
+
+         .ratingCount {
+             color: #ffc700;
+             font-size: large;
+         }
+
+         .ratingCountGrey {
+             font-size: large;
+             color: grey;
+         }
+
+         .leftBorder {
+             border-left: 2px solid rgba(0, 0, 0, 0.05) !important;
+         }
+
+         .cstext {
+             font-size: 0.85em;
+         }
+     </style>
+ }

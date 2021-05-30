@@ -11,18 +11,18 @@ namespace Food_Delivery.Models
     {
         [Key]
         public int Id { get; set; }
+
         [Required]
         public int ResturantId { get; set; }
 
         [ForeignKey("ResturantId")]
+
         public virtual Restaurant Resturant { get; set; }
+        [Required]
+        public string UserId { get; set; }
 
-        public string Name { get; set; }
-        //[Required]
-        //public string UserId { get; set; }
-
-        //[ForeignKey("UserId")]
-        //public virtual ApplicationUser Employee { get; set; }
+        [ForeignKey("UserId")]
+        public virtual ApplicationUser User { get; set; }
         [Required]
         public int RatingN { get; set; }
         [Required]

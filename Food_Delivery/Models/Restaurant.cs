@@ -27,7 +27,7 @@ namespace Food_Delivery.Models
         public string Description { get; set; }
 
         [DisplayName("Rating :")]
-        public double Rating { get; set; }
+        public int Rating { get; set; }
 
         [Required]
         [DisplayName("Restaurant Adress :")]

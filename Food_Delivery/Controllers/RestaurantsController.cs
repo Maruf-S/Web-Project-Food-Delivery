@@ -1,4 +1,5 @@
 ﻿using Food_Delivery.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -35,6 +36,8 @@ namespace Food_Delivery.Controllers
         public IActionResult Details(int id) {
             var res = _context.Restaurants
                 .Include(i => i.Foods)
+                .Include(i => i.Ratings)
+                .Include("Ratings.User")
                 .FirstOrDefault(r => r.Id == id);
             if (res == null) {
                 return NotFound();
@@ -43,14 +46,33 @@ namespace Food_Delivery.Controllers
             return View(res);
         }
         [HttpPost]
-        public IActionResult Rate(Rating rate,int id) {
+        //[Authorize]
+        public IActionResult Rate([Bind("Review,UserId,ResturantId,RatingN")] Rating rating) {
             if (ModelState.IsValid) {
-                _context.Ratings.Add(rate);
+                if (_context.Ratings.Where(r => r.UserId == rating.UserId).FirstOrDefault() != null && false) {
+
+                    return Redirect(Request.Headers["Referer"].ToString());
+                }
+                //_context.Ratings.Add(rate);
+                rating.DateRated = DateTime.Now;
+                _context.Ratings.Add(rating);
                 _context.SaveChanges();
-                return RedirectToAction(actionName: nameof(Details), new { id = id });
+                var res = _context.Restaurants
+                                    .Include(i => i.Ratings)
+                                    .Include("Ratings.User")
+                                    .FirstOrDefault(r => r.Id == rating.ResturantId);
+                int totalr = 0;
+                foreach (var ra in res.Ratings)
+                {
+                    totalr += ra.RatingN;
+                }
+                res.Rating = Convert.ToInt32(totalr / (res.Ratings.Count));
+                _context.Restaurants.Update(res);
+                _context.SaveChanges();
+                return Redirect(Request.Headers["Referer"].ToString());
             }
             else {
-                return RedirectToAction(actionName: nameof(Details), new { id = id });
+                return Redirect(Request.Headers["Referer"].ToString());
             }
         }
         public IActionResult Rate() {
