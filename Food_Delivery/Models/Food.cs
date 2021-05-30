@@ -28,6 +28,7 @@ namespace Food_Delivery.Models
         [Required]
         public double Price { get; set; }
 
+        public double Weight { get; set; }
 
         [NotMapped]
         public IFormFile Image { get; set; }

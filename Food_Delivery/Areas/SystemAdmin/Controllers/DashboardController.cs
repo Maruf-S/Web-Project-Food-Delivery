@@ -333,12 +333,13 @@ namespace Food_Delivery.Areas.SystemAdmin.Controllers
                 //CREATE
                 if (ModelState.IsValid)
                 {
-                    if (restaurant.Image == null)
+                    if (restaurant.Image == null || restaurant.LargeImage==null)
                     {
-                        ModelState.AddModelError("Image", "You need to attach the restaurant's image.");
+                        ModelState.AddModelError("Image", "You need to attach the restaurant images.");
                         return View(restaurant);
                     }
                     restaurant.ImagePath = await ProcessUploadedRImageAsync(restaurant.Image);
+                    restaurant.LargeImagePath = await ProcessUploadedRImageAsync(restaurant.LargeImage);
                     await _context.Restaurants.AddAsync(restaurant);
                     await _context.SaveChangesAsync();
                     return RedirectToAction(nameof(ManageRestaurants));
@@ -365,6 +366,22 @@ namespace Food_Delivery.Areas.SystemAdmin.Controllers
                         }
                         restaurant.ImagePath = await ProcessUploadedRImageAsync(restaurant.Image);
                     }
+                    if (restaurant.LargeImage == null)
+                    {
+                        //Image not updated
+                    }
+                    else
+                    {
+
+                        //Find the old image
+                        if (restaurant.LargeImagePath != null)
+                        {
+                            string oldFilePath = Path.Combine(_webHostEnvironment.WebRootPath, "Images", "Restaurants", restaurant.LargeImagePath);
+                            System.IO.File.Delete(oldFilePath);
+                        }
+                        restaurant.LargeImagePath = await ProcessUploadedRImageAsync(restaurant.LargeImage);
+                    }
+
                     var result =  _context.Restaurants.Update(restaurant);
                     await _context.SaveChangesAsync();
                     return RedirectToAction(nameof(ManageRestaurants));

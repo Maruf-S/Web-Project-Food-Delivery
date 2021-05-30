@@ -129,6 +129,9 @@ namespace Food_Delivery.Migrations
                     b.Property<int>("ResturantId")
                         .HasColumnType("int");
 
+                    b.Property<double>("Weight")
+                        .HasColumnType("float");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ResturantId");
@@ -175,6 +178,33 @@ namespace Food_Delivery.Migrations
                     b.ToTable("Orders");
                 });
 
+            modelBuilder.Entity("Food_Delivery.Models.Rating", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RatingN")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ResturantId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Review")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ResturantId");
+
+                    b.ToTable("Ratings");
+                });
+
             modelBuilder.Entity("Food_Delivery.Models.Restaurant", b =>
                 {
                     b.Property<int>("Id")
@@ -189,7 +219,14 @@ namespace Food_Delivery.Migrations
                     b.Property<DateTime>("DateAdded")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ImagePath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LargeImagePath")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -373,6 +410,17 @@ namespace Food_Delivery.Migrations
                     b.Navigation("Food");
                 });
 
+            modelBuilder.Entity("Food_Delivery.Models.Rating", b =>
+                {
+                    b.HasOne("Food_Delivery.Models.Restaurant", "Resturant")
+                        .WithMany("Ratings")
+                        .HasForeignKey("ResturantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Resturant");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -434,6 +482,8 @@ namespace Food_Delivery.Migrations
             modelBuilder.Entity("Food_Delivery.Models.Restaurant", b =>
                 {
                     b.Navigation("Foods");
+
+                    b.Navigation("Ratings");
                 });
 #pragma warning restore 612, 618
         }

@@ -22,6 +22,10 @@ namespace Food_Delivery.Models
         [Required]
         public string Name { get; set; }
 
+        [DisplayName("Description :")]
+        [Required]
+        public string Description { get; set; }
+
         [DisplayName("Rating :")]
         public double Rating { get; set; }
 
@@ -34,9 +38,16 @@ namespace Food_Delivery.Models
         [NotMapped]
         public IFormFile Image { get; set; }
 
+        public string LargeImagePath { get; set; }
+
+        [NotMapped]
+        public IFormFile LargeImage { get; set; }
+
         public DateTime DateAdded { get; set; }
         public ICollection<Food> Foods { get; set; }
+        public ICollection<Rating> Ratings { get; set; }
 
 
     }
 }
+//dawit yonas

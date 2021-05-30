@@ -13,5 +13,20 @@ namespace Food_Delivery.Controllers
         {
             return View();
         }
+        [HttpGet]
+        public IActionResult CheckOut1()
+        {
+            return View();
+        }
+        [HttpGet]
+        public IActionResult CheckOut2()
+        {
+            return View();
+        }
+        [HttpGet]
+        public IActionResult CheckOut3()
+        {
+            return View();
+        }
     }
 }

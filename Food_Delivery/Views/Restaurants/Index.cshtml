@@ -1,149 +1,230 @@
-﻿@{
-    ViewData["Title"] = "Restaurants";
-}
-@section PageCss{
-    <link rel="stylesheet" href="~/Home/css/restaurant.css">
-}
-<!-- <div id="header"> -->
-<div class="res_header">
-    <div class="center text-center">
-        <div class="container">
-            <p><h1 class="titleR">Search your favourite resturant</h1></p>
-            <p class="detailR">Find restaurants, specials, and coupons for free</p>
-            <input id="location" name="location" type="text" placeholder="Search for Resturant" value="" class="pac-target-input" autocomplete="off">
-            <!-- <button type="submit" id="submit" ><span>Search <i class="fa fa-search fa-2x"></i></span></button> -->
-            <input type="submit" value="Search">
+﻿@model ICollection<Restaurant>
+<section class="pager-section text-center">
+    <div class="fixed-bg bg4"></div>
+    <div class="container">
+        <div class="pager-head">
+            <h2>Restaurants and cafes</h2>
+            <ul>
+                <li><a href="#" title="">Home</a></li>
+                <li><span>Restaurants and cafes</span></li>
+            </ul>
         </div>
+        <!--pager-head end-->
     </div>
-</div>
+</section>
+<!--pager-section end-->
 
-<!-- </div> -->
-<!-- /#header -->
-
-<div id="special-offser" class="parallax pricing">
-    <div class="container inner">
-        <h2 class="section-title text-center">Restaurants</h2>
-        <p class="lead main text-center quote">It's easier to be faithful to a restaurant than it is to a woman.</p>
-
+<section class="sec-block">
+    <div class="container">
         <div class="row">
-            <div class="col-md-6 col-sm-6">
-
-                <div class="pricing-item">
-
-                    <a href="detail.html?1"><img class="img-responsive img-thumbnail" src="~/Home/img/restorants/res1.jpg" alt=""></a>
-
-                    <div class="pricing-item-details">
-
-                        <h3><a href="detail.html?1">Chicken Fried Rice</a></h3>
-
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                        <span id="restorant_location">68 5th Avenue   <span class="res_rating"></span> </span>
-
-                        <a class="btn btn-danger" href="detail.html?1">Visit now</a>
-                        <div class="clearfix"></div>
-                    </div>
-
+            <div class="col-lg-3 order-md-1 order-sm-1 order-col-1">
+                <div class="sidebar left-sidebar">
+                    <form>
+                        <div class="widget widget-filter">
+                            <h3 class="widget-title">Filter</h3>
+                            <ul>
+                                <li>
+                                    <label class="label">
+                                        Beverages
+                                        <input type="checkbox" checked="checked">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label class="label">
+                                        Burgers
+                                        <input type="checkbox">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label class="label">
+                                        Meat & Steaks
+                                        <input type="checkbox">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label class="label">
+                                        Pastry
+                                        <input type="checkbox">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label class="label">
+                                        Pasta
+                                        <input type="checkbox">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label class="label">
+                                        Pizza
+                                        <input type="checkbox">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label class="label">
+                                        Sandwiches
+                                        <input type="checkbox">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label class="label">
+                                        Seafood
+                                        <input type="checkbox">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label class="label">
+                                        Soup & Salads
+                                        <input type="checkbox">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label class="label">
+                                        Sushi
+                                        <input type="checkbox">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label class="label">
+                                        Vegetarian Food
+                                        <input type="checkbox">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </li>
+                            </ul>
+                        </div>
+                        <!--widget-filter end-->
+                        <div class="widget widget-tags">
+                            <h3 class="widget-title">Tags</h3>
+                            <ul>
+                                <li><a href="#" title="">Fish</a></li>
+                                <li><a href="#" title="">Grill</a></li>
+                                <li><a href="#" title="">Beer</a></li>
+                                <li><a href="#" title="">Chicken</a></li>
+                                <li><a href="#" title="">Beef</a></li>
+                                <li><a href="#" title="">Hot</a></li>
+                                <li><a href="#" title="">Vegetables</a></li>
+                                <li><a href="#" title="">Chilly</a></li>
+                                <li><a href="#" title="">Fruits</a></li>
+                            </ul>
+                        </div>
+                        <!--widget-tags end-->
+                        <div class="widget widget-price-filter">
+                            <h3 class="widget-title">Rating</h3>
+                            <div id="slider-range"></div>
+                            <div class="price-bx">
+                                <input type="text" id="amount" readonly>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <!--widget-filter end-->
+                        <button type="submit" class="btn-default w-100">Search <span></span></button>
+                    </form>
                 </div>
+                <!--sidebar end-->
             </div>
-            <div class="col-md-6 col-sm-6">
-
-                <div class="pricing-item">
-
-                    <a href="detail.html?2"><img class="img-responsive img-thumbnail" src="~/Home/img/restorants/res1.jpg" alt=""></a>
-
-                    <div class="pricing-item-details">
-
-                        <h3><a href="detail.html?2">Hot Fried Chicken</a></h3>
-
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                        <span id="restorant_location">68 5th Avenue   <span class="res_rating"></span> </span>
-
-                        <a class="btn btn-danger" href="detail.html?2">Visit now</a>
-                        <div class="clearfix"></div>
-                    </div>
+            <div class="col-lg-9">
+                <div class="search-prod">
+                    <form>
+                        <div class="form-group">
+                            <input type="text" name="query" placeholder="Search"
+                                   class="form-control half-radius" value="@ViewBag.query">
+                            <button type="submit" class="btn-default half-radius">Search Restaurant</button>
+                        </div>
+                    </form>
                 </div>
-            </div>
-            <div class="clearfix visible-md"></div>
-            <div class="col-md-6 col-sm-6">
-
-                <div class="pricing-item">
-
-                    <a href="detail.html?3"><img class="img-responsive img-thumbnail" src="~/Home/img/restorants/res8.jpg" alt=""></a>
-
-                    <div class="pricing-item-details">
-
-                        <h3><a href="detail.html?3">Thi Chicken Momo</a></h3>
-
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                        <span id="restorant_location">68 5th Avenue   <span class="res_rating"></span> </span>
-
-
-                        <a class="btn btn-danger" href="detail.html?3">Visit now</a>
-                        <div class="clearfix"></div>
-                    </div>
+                <!--search-prod end-->
+                <div class="listing-products">
+                    @foreach (Restaurant restaurant in Model)
+                    {
+                        <div class="listing-product">
+                            <div class="product-thumb">
+                                <img src="~/Images/Restaurants/@restaurant.ImagePath" alt="" class="w-100">
+                                @*<div class="cl-logo">
+                                        <img src="https://via.placeholder.com/150x150" alt="">
+                                    </div>*@
+                            </div>
+                            <div class="product-info">
+                                <h3><a asp-controller="Restaurants" asp-action="Details" asp-route-id="@restaurant.Id" title="">@restaurant.Name</a></h3>
+                                <ul class="rating">
+                                    @*TODO*@
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                </ul>
+                                <p>
+                                    @restaurant.Description
+                                </p>
+                                <ul class="btm">
+                                    <li><a href="#" title="">Restaurant</a></li>
+                                    <li><span><b class="statuss"></b>Open now</span></li>
+                                </ul>
+                                <a asp-controller="Restaurants" asp-action="Details" asp-route-id="@restaurant.Id" title="" class="view-menu">
+                                    View Menu <i class="fa fa-long-arrow-alt-right"></i>
+                                </a>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    }
                 </div>
+                <!--listing-product end-->
+                <!--<div class="listing-product">
+                                        <div class="product-thumb">
+                                            <img src="https://via.placeholder.com/262x240
+                " alt="" class="w-100">
+                                            <div class="cl-logo">
+                                                <img src="https://via.placeholder.com/150x150
+                " alt="">
+                                            </div>
+                                        </div>
+                                        <div class="product-info">
+                                            <h3><a href="restaurant-details.html" title="">bulgarian restaurant</a></h3>
+                                            <ul class="rating">
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                            </ul>
+                                            <p>
+                                                Salads, soups, sneaks, burgers, drinks, seafood, grill, fish, vegetarian menu,
+                                                wine, hot meals, steaks...
+                                            </p>
+                                            <ul class="btm">
+                                                <li><a href="#" title="">Restaurant</a></li>
+                                                <li><span><b class="statuss closed"></b>Closed</span></li>
+                                            </ul>
+                                            <a href="restaurant-details.html" title="" class="view-menu">
+                                                View Menu <i class="fa fa-long-arrow-alt-right"></i>
+                                            </a>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>-->
+                <!--listing-product end-->
+                <!--listing-products end-->
+                @*<div class="load-more mt-40 text-center">
+                        <a href="#" title="" class="btn-default">Load More <span></span></a>
+                    </div>*@
             </div>
-            <div class="col-md-6 col-sm-6">
-
-                <div class="pricing-item">
-
-                    <a href="detail.html?4"><img class="img-responsive img-thumbnail" src="~/Home/img/restorants/res8.jpg" alt=""></a>
-
-                    <div class="pricing-item-details">
-
-                        <h3><a href="detail.html?4">Cocktail Sushi</a></h3>
-
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                        <span id="restorant_location">68 5th Avenue   <span class="res_rating"></span> </span>
-
-                        <a class="btn btn-danger" href="detail.html?4">Visit now</a>
-                        <div class="clearfix"></div>
-                    </div>
-
-                </div>
-            </div>
-            <div class="clearfix visible-md"></div>
-            <div class="col-md-6 col-sm-6">
-
-                <div class="pricing-item">
-
-                    <a href="detail.html?5"><img class="img-responsive img-thumbnail" src="~/Home/img/restorants/res2.jpg" alt=""></a>
-
-                    <div class="pricing-item-details">
-
-                        <h3><a href="detail.html?5">Thi Chicken Momo</a></h3>
-
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                        <span id="restorant_location">68 5th Avenue   <span class="res_rating"></span> </span>
-
-                        <a class="btn btn-danger" href="detail.html?5">Visit now</a>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-sm-6">
-
-                <div class="pricing-item">
-
-                    <a href="detail.html?6"><img class="img-responsive img-thumbnail" src="~/Home/img/restorants/res1.jpg" alt=""></a>
-
-                    <div class="pricing-item-details">
-
-                        <h3><a href="detail.html?6">Cocktail Sushi</a></h3>
-
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                        <span id="restorant_location">68 5th Avenue   <span class="res_rating"></span> </span>
-
-                        <a class="btn btn-danger" href="detail.html?6">Visit now</a>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </div>
-</div>
+</section>
+@section PageCss{
 
+    <link rel="stylesheet" type="text/css" href="~/assets/css/jquery-ui.css">
+}
 @section Scripts{
-    <script src="~/Home/js/restourant.js"></script>
+
+    <script src="~/assets/js/jquery-ui.js"></script>
 }

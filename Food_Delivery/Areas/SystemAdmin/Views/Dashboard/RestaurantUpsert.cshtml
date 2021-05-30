@@ -57,7 +57,7 @@
             width: 192px;
             height: 192px;
             position: relative;
-            border-radius: 100%;
+            border-radius: 10%;
             border: 6px solid #F8F8F8;
             box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
         }
@@ -65,7 +65,7 @@
             .avatar-upload .avatar-preview > div {
                 width: 100%;
                 height: 100%;
-                border-radius: 100%;
+                border-radius: 10%;
                 background-size: cover;
                 background-repeat: no-repeat;
                 background-position: center;
@@ -91,14 +91,16 @@
         <form enctype="multipart/form-data" method="post" asp-action="RestaurantUpsert">
             @*<div asp-validation-summary="All" class="text-danger"></div>*@
             <br>
-            @if( Model.Id !=0)
+            @if (Model.Id != 0)
             {
                 <input type="hidden" asp-for="@Model.Id" />
                 <input type="hidden" asp-for="@Model.ImagePath" />
+                <input type="hidden" asp-for="@Model.LargeImagePath" />
             }
             <div class="row">
                 <label class="col-3"></label>
                 <div class="col-6">
+                    <p class="text-info">Upload restaurant image (small 150X150)</p>
                     <div class="container-img">
                         <div class="avatar-upload">
                             <div class="avatar-edit">
@@ -125,6 +127,36 @@
                     <span asp-validation-for="@Model.Image" class="text-danger"></span>
                 </div>
             </div>
+            <div class="row">
+                <label class="col-3"></label>
+                <div class="col-6">
+                    <p class="text-info">Upload restaurant image (Large/Banner 1140X351)</p>
+                    <div class="container-img">
+                        <div class="avatar-upload">
+                            <div class="avatar-edit">
+                                <input asp-for="@Model.LargeImage" type='file' id="imageUpload2" accept="image/*" />
+                                <label for="imageUpload2" class="text-center">✏</label>
+
+                            </div>
+                            @if (Model.LargeImagePath != null)
+                            {
+                                <div class="avatar-preview">
+                                    <div id="imagePreview2" style="background-image: url(/Images/Restaurants/@Model.LargeImagePath);">
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="avatar-preview">
+                                    <div id="imagePreview2" style="background-image: url(/Images/RestaurantPlaceholderpng.png);">
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <span asp-validation-for="@Model.LargeImage" class="text-danger"></span>
+                </div>
+            </div>
             <div class="form-group row">
                 <div class="col-3">
                     <label asp-for="@Model.Name" class="control-label"></label>
@@ -132,6 +164,16 @@
                 <div class="col-6">
                     <input asp-for="@Model.Name" class="form-control" />
                     <span asp-validation-for="@Model.Name" class="text-danger"></span>
+
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-3">
+                    <label asp-for="@Model.Description" class="control-label"></label>
+                </div>
+                <div class="col-6">
+                    <input asp-for="@Model.Description" class="form-control" />
+                    <span asp-validation-for="@Model.Description" class="text-danger"></span>
 
                 </div>
             </div>
@@ -171,14 +213,22 @@
                 reader.readAsDataURL(input.files[0]);
             }
         }
+        function readURL2(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $( '#imagePreview2').css('background-image', 'url(' + e.target.result + ')');
+                    $( '#imagePreview2').hide();
+                    $( '#imagePreview2').fadeIn(650);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
         $("#imageUpload").change(function () {
-            readURL(this);
+            readURL(this, "#imageUpload" );
         });
-        $(document).ready(function () {
-            $('.custom-file-input').on("change", function () {
-                var fileName = $(this).val().split("\\").pop();
-                $(this).next('.custom-file-label').html(fileName);
-            });
+        $("#imageUpload2").change(function () {
+            readURL2(this, "#imageUpload2");
         });
     </script>
 
