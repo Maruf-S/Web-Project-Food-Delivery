@@ -49,7 +49,8 @@ namespace Food_Delivery.Controllers
         //[Authorize]
         public IActionResult Rate([Bind("Review,UserId,ResturantId,RatingN")] Rating rating) {
             if (ModelState.IsValid) {
-                if (_context.Ratings.Where(r => r.UserId == rating.UserId).FirstOrDefault() != null && false) {
+                ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                if (_context.Ratings.Where(r => r.UserId == rating.UserId).FirstOrDefault() != null) {
 
                     return Redirect(Request.Headers["Referer"].ToString());
                 }

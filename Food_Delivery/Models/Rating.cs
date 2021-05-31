@@ -30,5 +30,6 @@ namespace Food_Delivery.Models
 
         public DateTime DateRated { get; set; }
 
+
     }
 }
