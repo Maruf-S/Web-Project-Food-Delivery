@@ -277,7 +277,10 @@ a:hover {
 }
 
 .bg4 {
-  background-image: url(https://via.placeholder.com/1920x450);
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7) ), url(../images/middle1.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .slick-slide {
@@ -526,7 +529,7 @@ header .header-content {
   position: relative;
 }
 header nav {
-  padding-left: 100px;
+  padding-left: 80px;
 }
 header nav ul li {
   display: inline-block;
@@ -831,7 +834,7 @@ header .menu-btn.active span.bar3 {
 }
 
 .main-banner {
-  background-image: url(https://via.placeholder.com/1920x900);
+  background-image: url(../images/home.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   padding: 283px 0 254px;
