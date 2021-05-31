@@ -78,5 +78,6 @@ namespace Food_Delivery.Controllers
         public IActionResult Rate() {
             return PartialView("Rating", new Rating());
         }
+        
     }
 }

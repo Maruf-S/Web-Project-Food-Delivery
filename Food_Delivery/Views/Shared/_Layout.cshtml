@@ -4,6 +4,10 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)*@
+@using Food_Delivery.Helpers
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{ViewBag.cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContextAccessor.HttpContext.Session, "cart");}
 <!doctype html>
 <html lang="en">
 
@@ -78,7 +82,22 @@
                     <ul class="oth-lnks ml-auto">
                         <li><img src="~/assets/images/icons/phone.svg" alt="">+1 654 847 52 25</li>
                         <li><a href="#" title="" class="search-icon"><img src="~/assets/images/icons/search.svg" alt=""></a></li>
-                        <li><a href="#" title="" class="cart-ico"><img src="~/assets/images/icons/cart.svg" alt=""></a><span class="cart-item-num">0</span></li>
+                        <li>
+                            <a asp-controller="Cart" asp-action="Index" title="" class="cart-ico"><img src="~/assets/images/icons/cart.svg" alt=""></a><span class="cart-item-num">
+                                @if (ViewBag.cart != null)
+                                {
+                                    <Text>
+                                    @ViewBag.cart.Count
+                                    </Text>
+                                }
+                                else
+                                {
+                                    <Text>
+                                    0
+                                    </Text>
+                                }
+                            </span>
+                        </li>
                         <li><a href="sign-in.html" title="" class="cart-ico">Sign in <img src="~/assets/images/icons/sign-in.svg" alt=""></a></li>
                     </ul><!--oth-lnks end-->
                 </div><!--header-content end-->

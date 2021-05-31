@@ -1,32 +1,6 @@
-﻿<div class="responsive-mobile-menu">
-    <ul>
-        <li><a class="active" href="index.html" title="">Home</a></li>
-        <li><a href="about.html" title="">About Us</a></li>
-        <li>
-            <a href="#" title="">Pages</a>
-            <ul>
-                <li><a href="restaurants.html" title="">Restaurants</a></li>
-                <li><a href="restaurant-details.html" title="">Restaurant detail</a></li>
-                <li><a href="cart.html" title="">Cart</a></li>
-                <li><a href="checkout.html" title="">Checkout</a></li>
-                <li><a href="profile.html" title="">My profile</a></li>
-                <li><a href="faqs.html" title="">FAQs</a></li>
-                <li><a href="testimonials.html" title="">Testimonials</a></li>
-                <li><a href="404.html" title="">404</a></li>
-            </ul>
-        </li>
-        <li>
-            <a href="#" title="">Blog</a>
-            <ul>
-                <li><a href="blog1.html" title="">Blog 1</a></li>
-                <li><a href="blog2.html" title="">Blog 2</a></li>
-                <li><a href="blog-single.html" title="">Blog Single</a></li>
-            </ul>
-        </li>
-        <li><a href="contact.html" title="">Contact Us</a></li>
-    </ul>
-</div><!--responsive-mobile-menu end-->
-
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<ApplicationUser> UserManager
+@model Order
 <section class="pager-section text-center">
     <div class="fixed-bg bg4"></div>
     <div class="container">
@@ -44,122 +18,212 @@
     <div class="container">
         <div class="checkout-head">
             <ul>
-                <li>
-                    <h2 class="active"><span>01.</span> Order details</h2>
-                </li>
-                <li>
-                    <h2><span>02.</span> Payment Method</h2>
-                </li>
-                <li>
-                    <h2><span>03.</span> Finish</h2>
-                </li>
+                <ul>
+                    <li>
+                        <h2 class="active"><span>01.</span> Order details</h2>
+                    </li>
+                    <li>
+                        <h2><span>02.</span> Confirm Order</h2>
+                    </li>
+                </ul>
             </ul>
         </div><!--checkout-head end-->
-        <a href="cart.html" title="" class="btn-default2"><i class="fa fa-long-arrow-alt-left"></i>Back to cart</a>
+        <a asp-controller="Cart" asp-action="Index" title="" class="btn-default2"><i class="fa fa-long-arrow-alt-left"></i>Back to cart</a>
         <div class="row">
             <div class="col-lg-8">
-                <form class="checkout-form">
-                    <div class="ck-form">
-                        <h4>Info about you:</h4>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="text" name="name" class="form-control half-radius" placeholder="First name *">
-                                </div><!--form-group end-->
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="text" name="last-name" class="form-control half-radius" placeholder="Last name *">
-                                </div><!--form-group end-->
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="number" name="phone" class="form-control half-radius" placeholder="Phone number *">
-                                </div><!--form-group end-->
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="email" name="email" class="form-control half-radius" placeholder="Email *">
-                                </div><!--form-group end-->
-                            </div>
-                        </div>
-                    </div>
+                <form class="checkout-form" asp-controller="Orders" asp-action="CheckOut">
                     <div class="ck-form">
                         <h4>Delivery info:</h4>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <input type="text" name="city" class="form-control half-radius" placeholder="City *">
+                                    <input type="text" asp-for="City" required class="form-control half-radius" placeholder="City *">
                                 </div><!--form-group end-->
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <input type="text" name="address" class="form-control half-radius" placeholder="Address *">
+                                    <input type="text" asp-for="Adress" required class="form-control half-radius" placeholder="Address *">
                                 </div><!--form-group end-->
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <input type="text" name="delivery-date" class="form-control half-radius" placeholder="Delivery day *">
-                                </div><!--form-group end-->
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="text" name="delivery-time" class="form-control half-radius" placeholder="Delivery time *">
-                                </div><!--form-group end-->
+                                    <button class="btn-app btn half-radius" data-toggle="modal" data-target="#exampleModal"
+                                            type="button">
+                                        Choose location
+                                    </button>
+                                </div>
+                                <div class="form-group py-0">
+
+                                    <input readonly required asp-for="DeliveryLoc" value="Your location will appear here."
+                                           class="form-control-sm" id="coordinate" />
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="ck-form">
                         <h4>Delivery info:</h4>
                         <div class="form-group">
-                            <textarea name="order-note" placeholder="Order note"></textarea>
+                            <textarea asp-for="OrderNote" placeholder="Order note"></textarea>
                         </div><!--form-group end-->
                     </div>
-                    <a href="checkout-step2.html" title="" class="btn-default half-radius">Choose payment method <span></span></a>
+                    <input type="hidden" name="CustomerId" value="@UserManager.FindByNameAsync(User.Identity.Name).Result.Id" />
+                    @*<input type="hidden" asp-for="Id" class="form-control half-radius">*@
+                    <button title="" type="submit" class="btn-default half-radius">Confirm Order <span></span></button>
                 </form>
             </div>
             <div class="col-lg-4">
                 <div class="order-details">
                     <h3>your order</h3>
-                    <ul class="vl-ord">
-                        <li>
-                            <div class="ppc">
-                                <span>Shrimp and oyster soup</span>
-                                <b>2x</b>
-                            </div>
-                            <span>$130.79</span>
-                        </li>
-                        <li>
-                            <div class="ppc">
-                                <span>Rib-eye steaks</span>
-                                <b>2x</b>
-                            </div>
-                            <span>$31.38</span>
-                        </li>
-                        <li>
-                            <div class="ppc">
-                                <span>Greek salad</span>
-                                <b>1x</b>
-                            </div>
-                            <span>$34.19</span>
-                        </li>
-                    </ul>
-                    <ul class="price-tablee">
-                        <li>
-                            <h4>Subtotal</h4>
-                            <span>196.35</span>
-                        </li>
-                        <li>
-                            <h4 class="delivery">Delivery</h4>
-                            <span>$25</span>
-                        </li>
-                        <li>
-                            <h4 class="total-price">Total</h4>
-                            <span class="total-price">$221.35</span>
-                        </li>
-                    </ul>
+                    @if (@ViewBag.cart == null)
+                    {
+                        <div>
+                            <text>Your Cart is empty.</text>
+                        </div>
+                    }
+                    else if (@ViewBag.cart.Count == 0)
+                    {
+                        <div>
+                            <text>Your Cart is empty.</text>
+                        </div>
+                    }
+                    else
+                    {
+
+                        <ul class="vl-ord">
+                            @foreach (Item item in ViewBag.cart)
+                            {
+                                <li>
+                                    <div class="ppc">
+                                        <span>@item.item.Name</span>
+                                        <b><Text>@item.Quantity</Text>x</b>
+                                    </div>
+                                    <span>@(item.item.Price * item.Quantity) ETB</span>
+                                </li>
+                            }
+                        </ul>
+                        <ul class="price-tablee">
+                            <li>
+                                <h4>Subtotal</h4>
+                                <span>@ViewBag.total</span>
+                            </li>
+                            <li>
+                                <h4 class="delivery">Delivery</h4>
+                                <span>10 ETB</span>
+                            </li>
+                            <li>
+                                <h4 class="total-price">Total</h4>
+                                <span class="total-price">@(ViewBag.total + 10) ETB</span>
+                            </li>
+                        </ul>
+                    }
                 </div><!--order-details end-->
             </div>
         </div>
     </div>
 </section>
+<div class="  align-self-center mb-1">
+    <div>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Choose location</h5>
+                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+                        </button>
+                    </div>
+                    <div class="modal-body w-100">
+                        <div id="map"></div>
+                        <pre id="coordinates" class="coordinates"></pre>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="choose">Choose</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+@section PageCss{
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css" rel="stylesheet">
+
+    <style>
+        #coord {
+            display: none;
+        }
+
+        .coordinates {
+            background: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            position: absolute;
+            bottom: 20px;
+            left: 10px;
+            padding: 5px 0px;
+            margin: 0;
+            font-size: 11px;
+            line-height: 18px;
+            border-radius: 3px;
+            display: none;
+        }
+
+        #map {
+            width: 100%;
+            height: 400px;
+        }
+    </style>
+}
+@section Scripts{
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js"></script>
+    <script>
+        var myModal = document.getElementById('exampleModal')
+        var choose = document.getElementById('choose')
+        var coordinates = document.getElementById('coordinates');
+
+
+        choose.addEventListener('click', function () {
+            if (coordinates.innerHTML == "") {
+                alert("Please choose your location!")
+            } else {
+                $("#exampleModal").modal('hide');
+                $('.modal-backdrop').hide();
+            }
+        })
+
+        mapboxgl.accessToken = 'pk.eyJ1IjoieW9uaW1lcmtlYnUiLCJhIjoiY2tsM2dsYmsxMW1lNTJzcW8ybDM0eGtnbCJ9._Gb2Fd84O3SO2-LgHIICpw';
+
+        var coordinates = document.getElementById('coordinates');
+        var coordinate = document.getElementById('coordinate');
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v11',
+            center: [38.7679, 8.99],
+            zoom: 15
+        });
+        // $('#cl').on('shown.bs.modal', function () {
+        //   map.invalidateSize();
+        // });
+
+        var marker = new mapboxgl.Marker({
+            draggable: true
+        })
+            .setLngLat([38.7679, 8.99])
+            .addTo(map);
+
+        function onDragEnd() {
+            var lngLat = marker.getLngLat();
+
+            coordinates.style.display = 'block';
+            coordinates.innerHTML =
+                lngLat.lng + ', ' + lngLat.lat;
+            coordinate.value =
+                lngLat.lng + ',' + lngLat.lat;
+        }
+
+        marker.on('dragend', onDragEnd);
+    </script>
+
+}

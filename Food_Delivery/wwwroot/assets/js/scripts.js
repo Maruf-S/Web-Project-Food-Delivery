@@ -69,7 +69,8 @@ $(window).on("load", function() {
       } else {
         value = 0;
       }
-      $input.val(value);
+        $input.val(value);
+        $(this).unbind('click').click();
     });
   }
 
@@ -84,7 +85,8 @@ $(window).on("load", function() {
       } else {
         value =100;
       }
-      $input.val(value);
+        $input.val(value);
+        $(this).unbind('click').click();
     });
   };
 

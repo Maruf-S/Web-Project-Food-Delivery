@@ -36,6 +36,12 @@ namespace Food_Delivery.Models
 
         public string DeliveryLoc { get; set; }
 
+        [Required]
+        public string City { get; set; }
+        [Required]
+        public string Adress { get; set; }
+        public string OrderNote { get; set; }
+
         [ForeignKey("EmployeeId")]
         [InverseProperty("PendingDeliveries")]
         public virtual ApplicationUser Employee { get; set; }

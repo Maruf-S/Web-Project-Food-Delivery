@@ -51,11 +51,14 @@
                         <table id="DTable" class="table table-bordered table-hover">
                             <thead class="thead-dark">
                                 <tr>
-                                    <th>Food Id</th>
-                                    <th>Customer Id</th>
+                                    <th>Food Name</th>
                                     <th>Quantity</th>
-                                    <th>Delivery Location</th>
+                                    <th>Customer Name</th>
+                                    <th>Date Placed</th>
+                                    <th>City</th>
+                                    <th>Adress</th>
                                     <th>Status</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -63,44 +66,50 @@
                                 {
                                 <tr>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.FoodId)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.CustomerId)
+                                        @Html.DisplayFor(modelItem => item.Food.Name)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Quantity)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.DeliveryLoc)
+                                        @Html.DisplayFor(modelItem => item.Customer.FirstName) @Html.DisplayFor(modelItem => item.Customer.LastName)
                                     </td>
                                     <td>
-                                        @item.DatePlaced.ToString("MM/dd/yyyy")
+                                        @Html.DisplayFor(modelItem => item.DatePlaced)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.City)
+                                    </td>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Adress)
                                     </td>
                                     <td>
                                         @if (item.Delivered)
                                         {
-                                            @Html.DisplayText("Delivered")
+                                            <Text>Delivered</Text>
                                         }
                                         else
                                         {
-                                            @Html.DisplayText("Pending")
+                                            <Text>Pending</Text>
                                         }
                                     </td>
                                     <td>
-                                        @*<a asp-action="GetCVDoc" asp-route-id="@item.Id" class="btn text-success" data-toggle="tooltip" data-placement="top" title="Download CV"><i class="fas fa-download"></i></a>*@
-                                        <a asp-action="RestaurantUpsert" asp-route-id="@item.Id" class="btn text-success" data-toggle="tooltip" data-placement="top" title="Edit Restaurant"><i class="fas fa-user-edit"></i></a>
+                                        <a asp-action="ConfirmDelivery" asp-route-id="@item.Id" class="btn text-success" data-toggle="tooltip" data-placement="top" title="Confirm delivery"><i class="fas fa-suitcase px-1"></i>Confirm Delivery</a>
                                     </td>
                                 </tr>
                                 }
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th>Food Id</th>
-                                    <th>Customer Id</th>
+                                    <th>Food Name</th>
                                     <th>Quantity</th>
-                                    <th>Delivery Location</th>
+                                    <th>Customer Name</th>
+                                    <th>Date Placed</th>
+                                    <th>City</th>
+                                    <th>Adress</th>
                                     <th>Status</th>
+                                    <th></th>
                                 </tr>
                             </tfoot>
                         </table>

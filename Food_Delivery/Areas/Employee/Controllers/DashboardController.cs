@@ -2,6 +2,7 @@
 using Food_Delivery.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -26,6 +27,9 @@ namespace Food_Delivery.Areas.Employee.Controllers
         [HttpGet]
         public IActionResult Index()
         {
+            ViewBag.DeliveredOrders = _context.Orders
+                    .Where(e => e.Delivered == true)
+                    .ToList().Count;
             return View();
         }
         #region Login
@@ -71,12 +75,34 @@ namespace Food_Delivery.Areas.Employee.Controllers
 
         #region Orders
         [HttpGet]
-        public IActionResult Orders()
+        public async Task<IActionResult> Orders()
         {
-            List<Order> allOrders =  _context.Orders.ToList();
+            var curUser = await GetCurrentUserAsync();
+            var allOrders =  _context.Orders
+
+                                .Where(e => e.EmployeeId == curUser.Id)
+                                .Where(e => e.Delivered == false)
+                                .Include(e => e.Food)
+                                .Include(e => e.Employee)
+                                .Include(e => e.Customer)
+                                .ToList();
+
             return View(allOrders);
         }
-        #endregion
+        [HttpGet]
+        public async Task<IActionResult> ConfirmDelivery(int id)
+        {
+            var curUser = await GetCurrentUserAsync();
+            var allOrders = _context.Orders
+                                .Where(e => e.Id == id)
+                                .FirstOrDefault();
+            allOrders.Delivered = true;
+            _context.Orders.Update(allOrders);
+            await _context.SaveChangesAsync();
 
+            return RedirectToAction(actionName:nameof(Orders));
+        }
+        #endregion
+        private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
     }
 }

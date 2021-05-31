@@ -82,10 +82,10 @@
                                 <div class="pd-thumbnail">
                                     <img src="~/Images/Foods/@item.ImagePath" alt="" class="w-100">
                                 </div>
-                                <h3 class="semi-bold text-capitalize"><a href="#" title="">@item.Name</a> </h3>
+                                <h3 class="semi-bold text-capitalize"><a asp-controller="cart" asp-action="buy" asp-route-id="@item.Id" title="">@item.Name</a> </h3>
                                 <p>@item.Description</p>
                                 <strong class="semi-bold">@item.Price ETB</strong>
-                                <a href="cart.html" title="" class="btn-default gradient-bg half-radius height-2">Add to cart <span></span></a>
+                                <a asp-controller="cart" asp-action="buy" asp-route-id="@item.Id" title="" class="btn-default gradient-bg half-radius height-2">Add to cart <span></span></a>
                             </div>
                         </div>
                     }

@@ -1,0 +1,128 @@
+﻿
+<section class="pager-section text-center">
+    <div class="fixed-bg bg4"></div>
+    <div class="container">
+        <div class="pager-head">
+            <h2>Cart</h2>
+            <ul>
+                <li><a href="#" title="">Home</a></li>
+                <li><span>Cart</span></li>
+            </ul>
+        </div>
+        <!--pager-head end-->
+    </div>
+</section>
+<!--pager-section end-->
+
+<section class="sec-block">
+    <div class="container">
+        <div class="cart-page">
+            @if (ViewBag.cart == null)
+            {
+                <div class="text-center h2">
+                    <text>Your Cart is empty.</text>
+                </div>
+            }
+            else if (ViewBag.cart.Count == 0)
+            {
+                <div class="text-center h2">
+                    <text>Your Cart is empty.</text>
+                </div>
+            }
+            else
+            {
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Subtotal</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (Item item in ViewBag.cart)
+                        {
+                            <tr>
+                                <td>
+                                    <div class="cart-prod-info d-flex flex-wrap align-items-center">
+                                        <img src="~/Images/Foods/@item.item.ImagePath" alt="">
+                                        <div class="cart-pro-info">
+                                            <h4><a href="#" title="">@item.item.Name</a></h4>
+                                            <span>@item.item.Weight g</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <form method="get" asp-controller="Cart" asp-action="UpdateOrder">
+                                        <input type="hidden" name="id" value="@item.item.Id" />
+                                        <div class="item-counter">
+                                            <div class="quantity">
+                                                <button class="plus-btn" type="submit" name="button">
+                                                    <i class="fa fa-plus"></i>
+                                                </button>
+                                                <input type="text" name="name" value="@item.Quantity">
+
+                                                <button class="minus-btn" type="submit" name="button">
+                                                    <i class="fa fa-minus"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </td>
+                                <td>
+                                    <span class="price">@item.item.Price ETB</span>
+                                </td>
+                                <td>
+                                    <strong class="sub-total">@(item.item.Price * item.Quantity) ETB</strong>
+                                </td>
+                                <td>
+                                    <a asp-controller="Cart" asp-action="RemoveAll" asp-route-id="@item.item.Id" title=""><img src="~/assets/images/icons/icon-close.svg" alt=""></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <div class="row justify-content-end align-items-center">
+                    <div class="col-lg-8">
+                        <div class="update-cart">
+                            <a asp-controller="Cart" asp-action="Index" title="">
+                                <img src="~/assets/images/icons/refresh-ccw.svg" alt="" /> Update
+                                cart
+                            </a>
+                        </div>
+                        <!--coupan-code end-->
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="row justify-content-end">
+                    <div class="col-lg-5">
+                        <div class="price-table">
+                            <ul>
+                                <li>
+                                    <h4>Subtotal</h4>
+                                    <span>@ViewBag.total</span>
+                                </li>
+                                <li>
+                                    <h4 class="delivery">Delivery</h4>
+                                    <span>10 ETB</span>
+                                </li>
+                                <li>
+                                    <h4 class="total-price">Total</h4>
+                                    <span class="total-price">@(ViewBag.total + 10) ETB</span>
+                                </li>
+                            </ul>
+                            <a asp-controller="Orders" asp-action="CheckOut1" title="" class="btn-default text-center w-100">
+                                Checkout
+                                <span></span>
+                            </a>
+                        </div>
+                        <!--price-table end-->
+                    </div>
+                </div>
+            }
+        </div>
+        <!--cart-page end-->
+    </div>
+</section>
