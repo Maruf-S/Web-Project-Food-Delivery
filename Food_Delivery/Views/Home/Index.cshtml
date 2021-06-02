@@ -3,11 +3,11 @@
 <section class="main-banner">
     <div class="container">
         <div class="banner-text">
-            <h2>We deliver the taste of life</h2>
+            <h2>Order Delivery & Take-Out</h2>
             <span class="semi-bold text-capitalize">Get it delivered right to your door.</span>
-            <form>
-                <input type="text" name="location" class="half-radius" placeholder="Enter your location">
-                <button type="submit" class="btn-default">Search Food<span></span></button>
+            <form method="get" asp-controller="Restaurants" asp-action="Index">
+                <input type="text" name="query" class="half-radius" placeholder="Enter Restourant">
+                <button type="submit" class="btn-default">Search<span></span></button>
             </form>
         </div>
         <!--banner-text end-->
@@ -55,8 +55,8 @@
     <div class="container">
         <div class="section-title text-center">
             <span>Featured </span>
-            <h2 class="text-capitalize">restaurants & Cafes</h2>
-            <p class="mx-auto">The best restaurants and cafes that have been working with us for a long time.</p>
+            <h2 class="text-capitalize">Restaurants</h2>
+            <p class="mx-auto">The best restaurants and cafes work with us .</p>
         </div>
         <!--sec-title end-->
         <div class="featured-sec">
@@ -218,8 +218,8 @@
                         <div class="propt-icon">
                             <img src="assets/images/icons/discount.svg" alt="">
                         </div>
-                        <h3 class="semi-bold text-capitalize">discount system</h3>
-                        <p>We have a favorable discount system for our regular customers.</p>
+                        <h3 class="semi-bold text-capitalize">Tasty Dishes</h3>
+                        <p>We have a collection of tasty dishes which you can choose of easily.</p>
                     </div>
                     <!--proptz end-->
                 </div>
@@ -238,7 +238,7 @@
                         <div class="propt-icon">
                             <img src="assets/images/icons/food.svg" alt="">
                         </div>
-                        <h3 class="semi-bold text-capitalize">50+ restaurants</h3>
+                        <h3 class="semi-bold text-capitalize">10+ restaurants</h3>
                         <p>Large selection of restaurants and cafes throughout the country.</p>
                     </div>
                     <!--proptz end-->
@@ -251,49 +251,6 @@
 <!--our-proptz-section end-->
 
 
-<section class="sec-block pb-5">
-    <div class="container">
-        <div class="section-title text-center">
-            <span>Testimonials </span>
-            <h2 class="text-capitalize">happy clients say</h2>
-        </div>
-        <!--sec-title end-->
-        <div class="testimonials text-center">
-            <div class="testimonial-slide">
-                <p>Very fast delivery. I recommend to everyone. The food is very hot and fresh and also as tasty as in a restaurant. The application is very convenient and understandable.</p>
-                <div class="testimonial-by">
-                    <img src="https://via.placeholder.com/65x65
-                  " alt="">
-                    <h4 class="text-capitalize semi-bold">Marco Bituchini</h4>
-                    <span>May 16, 2020</span>
-                </div>
-            </div>
-            <!--testimonial-slide end-->
-            <div class="testimonial-slide">
-                <p>Very fast delivery. I recommend to everyone. The food is very hot and fresh and also as tasty as in a restaurant. The application is very convenient and understandable.</p>
-                <div class="testimonial-by">
-                    <img src="https://via.placeholder.com/65x65
-                  " alt="">
-                    <h4 class="text-capitalize semi-bold">Marco Bituchini</h4>
-                    <span>May 16, 2020</span>
-                </div>
-            </div>
-            <!--testimonial-slide end-->
-            <div class="testimonial-slide">
-                <p>Very fast delivery. I recommend to everyone. The food is very hot and fresh and also as tasty as in a restaurant. The application is very convenient and understandable.</p>
-                <div class="testimonial-by">
-                    <img src="https://via.placeholder.com/65x65
-                  " alt="">
-                    <h4 class="text-capitalize semi-bold">Marco Bituchini</h4>
-                    <span>May 16, 2020</span>
-                </div>
-            </div>
-            <!--testimonial-slide end-->
-        </div>
-        <!--testimonials end-->
-    </div>
-</section>
-
 
 <section class="sec-block">
     <div class="container-fluid">
@@ -303,17 +260,6 @@
         </div>
         <!--sec-title end-->
         <div class="popular-dishes text-center">
-            <div class="options">
-                <div class="option-isotop">
-                    <ul id="filter" class="option-set filters-nav" data-option-key="filter">
-                        <li><a class="selected" data-option-value=".meat">Meat</a></li>
-                        <li><a data-option-value=".pizza">Pizza</a></li>
-                        <li><a data-option-value=".fastfood">Fastfood</a></li>
-                        <li><a data-option-value=".sushi">Sushi</a></li>
-                        <li><a data-option-value=".vegitarian">Vegitarian food</a></li>
-                    </ul>
-                </div>
-            </div>
             <!--options end-->
             <div class="row">
                 <div class="masonary">
