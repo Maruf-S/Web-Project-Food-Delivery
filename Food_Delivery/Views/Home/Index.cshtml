@@ -5,8 +5,8 @@
         <div class="banner-text">
             <h2>Order Delivery & Take-Out</h2>
             <span class="semi-bold text-capitalize">Get it delivered right to your door.</span>
-            <form>
-                <input type="text" name="location" class="half-radius" placeholder="Enter Restourant">
+            <form method="get" asp-controller="Restaurants" asp-action="Index">
+                <input type="text" name="query" class="half-radius" placeholder="Enter Restourant">
                 <button type="submit" class="btn-default">Search<span></span></button>
             </form>
         </div>

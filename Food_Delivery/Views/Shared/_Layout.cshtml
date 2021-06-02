@@ -94,8 +94,8 @@
                 </div><!--header-content end-->
                 <div class="search-bar">
                     <div class="container">
-                        <form>
-                            <input type="text" name="search" placeholder="Search">
+                        <form method="get" asp-controller="Restaurants" asp-action="Index">
+                            <input type="text" name="query" placeholder="Search">
                         </form>
                     </div>
                 </div><!--search-bar end-->

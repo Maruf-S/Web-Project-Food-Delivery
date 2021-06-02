@@ -29,38 +29,45 @@
                 </div>
                 <!--search-prod end-->
                 <div class="listing-products">
-                    @foreach (Restaurant restaurant in Model)
+                    @if (Model.Count == 0)
                     {
-                        <div class="listing-product">
-                            <div class="product-thumb">
-                                <img src="~/Images/Restaurants/@restaurant.ImagePath" alt="" class="w-100">
-                                @*<div class="cl-logo">
-                                        <img src="https://via.placeholder.com/150x150" alt="">
-                                    </div>*@
+                        <p class="h2 text-center">No results found.</p>
+                    }
+                    else
+                    {
+                        @foreach (Restaurant restaurant in Model)
+                        {
+                            <div class="listing-product">
+                                <div class="product-thumb">
+                                    <img src="~/Images/Restaurants/@restaurant.ImagePath" alt="" class="w-100">
+                                    @*<div class="cl-logo">
+                            <img src="https://via.placeholder.com/150x150" alt="">
+                        </div>*@
+                                </div>
+                                <div class="product-info">
+                                    <h3><a asp-controller="Restaurants" asp-action="Details" asp-route-id="@restaurant.Id" title="">@restaurant.Name</a></h3>
+                                    <ul class="rating">
+                                        @*TODO*@
+                                        <li><i class="fa fa-star"></i></li>
+                                        <li><i class="fa fa-star"></i></li>
+                                        <li><i class="fa fa-star"></i></li>
+                                        <li><i class="fa fa-star"></i></li>
+                                        <li><i class="fa fa-star"></i></li>
+                                    </ul>
+                                    <p>
+                                        @restaurant.Description
+                                    </p>
+                                    <ul class="btm">
+                                        <li><a href="#" title="">Restaurant</a></li>
+                                        <li><span><b class="statuss"></b>Open now</span></li>
+                                    </ul>
+                                    <a asp-controller="Restaurants" asp-action="Details" asp-route-id="@restaurant.Id" title="" class="view-menu">
+                                        View Menu <i class="fa fa-long-arrow-alt-right"></i>
+                                    </a>
+                                    <div class="clearfix"></div>
+                                </div>
                             </div>
-                            <div class="product-info">
-                                <h3><a asp-controller="Restaurants" asp-action="Details" asp-route-id="@restaurant.Id" title="">@restaurant.Name</a></h3>
-                                <ul class="rating">
-                                    @*TODO*@
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                </ul>
-                                <p>
-                                    @restaurant.Description
-                                </p>
-                                <ul class="btm">
-                                    <li><a href="#" title="">Restaurant</a></li>
-                                    <li><span><b class="statuss"></b>Open now</span></li>
-                                </ul>
-                                <a asp-controller="Restaurants" asp-action="Details" asp-route-id="@restaurant.Id" title="" class="view-menu">
-                                    View Menu <i class="fa fa-long-arrow-alt-right"></i>
-                                </a>
-                                <div class="clearfix"></div>
-                            </div>
-                        </div>
+                        }
                     }
                 </div>
                 <!--listing-product end-->
