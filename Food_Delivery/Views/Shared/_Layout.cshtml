@@ -45,8 +45,7 @@
                 <div class="header-content d-flex flex-wrap align-items-center">
                     <div class="logo">
                         <a asp-area="" asp-controller="Home" asp-action="Index">
-                            <img src="~/assets/images/logo.png" alt="">
-                            @*<h1 class="text-white display-6" >Tēburu Delivery</h1>*@
+                            <img class="logoT" src="~/assets/images/logo/teburu.png" alt="">
                         </a>
                     </div><!--logo end-->
                     <nav>
@@ -54,20 +53,25 @@
                             <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                             <li><a asp-area="" asp-controller="Home" asp-action="About">About Us</a></li>
                             <li><a asp-area="" asp-controller="Restaurants" asp-action="Index">Restaurants</a></li>
-                            <li><a asp-area="" asp-controller="Cart" asp-action="Index">Cart</a></li>
+                            @*<li><a asp-area="" asp-controller="Cart" asp-action="Index">Cart</a></li>*@
                             <li><a asp-area="" asp-controller="Contact" asp-action="Index">Contact Us</a></li>
                         </ul>
                     </nav><!--navigation end-->
+                    <div class="menu-btn">
+                        <span class="bar1"></span>
+                        <span class="bar2"></span>
+                        <span class="bar3"></span>
+                    </div><!--menu-bar end-->
                     <ul class="oth-lnks ml-auto">
-                        <li><img src="~/assets/images/icons/phone.svg" alt="">+1 654 847 52 25</li>
+                        <li><img src="~/assets/images/icons/phone.svg" alt="">+251 917040665</li>
                         @*<li class="searchLi">
-                            <div class="content_search">
-                                <div class="search_search">
-                                    <input type="text" class="search__input" aria-label="search" placeholder="enter your search">
-                                    <button class="search__submit" aria-label="submit search"><i class="fas fa-search"></i></button>
-                                </div>
-                            </div>
-                        </li>*@
+                <div class="content_search">
+                    <div class="search_search">
+                        <input type="text" class="search__input" aria-label="search" placeholder="enter your search">
+                        <button class="search__submit" aria-label="submit search"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+            </li>*@
                         <li><a href="#" title="" class="search-icon"><img src="~/assets/images/icons/search.svg" alt=""></a></li>
                         <li>
                             <a asp-controller="Cart" asp-action="Index" title="" class="cart-ico"><img src="~/assets/images/icons/cart.svg" alt=""></a><span class="cart-item-num">
@@ -85,7 +89,7 @@
                                 }
                             </span>
                         </li>
-                        <li><a asp-area="Identity"  asp-page="/Account/Login"  class="cart-ico">Sign in <img src="~/assets/images/icons/sign-in.svg" alt=""></a></li>
+                        <li><a asp-area="Identity" asp-page="/Account/Login" class="cart-ico">Sign in <img src="~/assets/images/icons/sign-in.svg" alt=""></a></li>
                     </ul><!--oth-lnks end-->
                 </div><!--header-content end-->
                 <div class="search-bar">
@@ -103,7 +107,7 @@
                 <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                 <li><a asp-area="" asp-controller="Home" asp-action="About">About Us</a></li>
                 <li><a asp-area="" asp-controller="Restaurants" asp-action="Index">Restaurants</a></li>
-                <li><a asp-area="" asp-controller="Cart" asp-action="Index">Cart</a></li>
+                @*<li><a asp-area="" asp-controller="Cart" asp-action="Index">Cart</a></li>*@
                 <li><a asp-area="" asp-controller="Contact" asp-action="Index">Contact Us</a></li>
             </ul>
         </div><!--responsive-mobile-menu end-->
@@ -127,7 +131,7 @@
                     <div class="row align-items-center">
                         <div class="col-lg-3 col-md-6">
                             <div class="widget widget-about">
-                                <img src="~/assets/images/logo.png" alt="">
+                                <img class="logoT" src="~/assets/images/logo/teburu.png" alt="">
                                 <h4>Working schedule</h4>
                                 <p>Mon - Sat:  9:00 am - 10:00 pm <br /> Sun:  10:00 am - 8:00 pm</p>
                             </div><!--widget-about end-->
@@ -139,7 +143,7 @@
                         <div class="col-lg-6 col-md-6">
                             <div class="widget widget-contact text-center">
                                 <h2><span>Call us</span>  to make an order!</h2>
-                                <strong>+1 654 847 52 25</strong>
+                                <strong>+251 917 040 665</strong>
                             </div><!--widget-contact end-->
                         </div>
                     </div>

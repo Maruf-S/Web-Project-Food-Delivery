@@ -166,9 +166,9 @@ a {
 }
 
 .bg4 {
-  background-image: url(../images/resources/bg4.jpg);
+    background-image: url(../images/pager-bg.jpg);
+    /*background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7) ), url(../images/middle1.jpg) !important;*/
 }
-
 a {
   -webkit-transition: all 0.4s ease-in-out;
   -ms-transition: all 0.4s ease-in-out;
@@ -277,10 +277,8 @@ a:hover {
 }
 
 .bg4 {
-    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7) ), url(../images/middle1.jpg) !important;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    background-image: url(../images/pager-bg.jpg);
+    /*background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7) ), url(../images/middle1.jpg) !important;*/
 }
 
 .slick-slide {
@@ -524,6 +522,10 @@ header .container-fluid {
 header .logo {
   flex: 0 0 144px;
   max-width: 144px;
+}
+.logoT {
+    width: 13rem;
+    color: white;
 }
 header .header-content {
   position: relative;
