@@ -1,6 +1,8 @@
 ﻿
 using Food_Delivery.Areas.Employee.ViewModels;
+using Food_Delivery.Helpers;
 using Food_Delivery.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -17,6 +19,7 @@ using System.Threading.Tasks;
 namespace Food_Delivery.Areas.SystemAdmin.Controllers
 {
     [Area("SystemAdmin")]
+    [Authorize(Roles = Role.Admin)]
     public class DashboardController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -51,16 +54,15 @@ namespace Food_Delivery.Areas.SystemAdmin.Controllers
         }
 
         #region ADMIN LOGIN
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult Login()
         {
-            if (User.Identity.IsAuthenticated) {
-                return RedirectToAction(nameof(ManageEmployees), "Dashboard", new { area = "SystemAdmin" });
-            }
             return View(new InputModel());
         }
 
         [HttpPost]
+        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(InputModel input,string returnUrl = null)
         {
@@ -70,7 +72,7 @@ namespace Food_Delivery.Areas.SystemAdmin.Controllers
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
                 var result = await _signInManager.PasswordSignInAsync(input.Email, input.Password, input.RememberMe, lockoutOnFailure: false);
-                if (result.Succeeded)
+                if (result.Succeeded && await _userManager.IsInRoleAsync(await _userManager.FindByEmailAsync(input.Email), Role.Admin))
                 {
                     return RedirectToAction(nameof(ManageEmployees));
                 }
@@ -130,11 +132,7 @@ namespace Food_Delivery.Areas.SystemAdmin.Controllers
                     var result = await _userManager.CreateAsync(employee, "123456");
                     if (result.Succeeded)
                     {
-                        //foreach (var role in selectedRoles)
-                        //{
-                        //    //var x = role.ToString();
-                        //    await _userManager.AddToRoleAsync(user, role.ToString());
-                        //}
+                        await _userManager.AddToRoleAsync(employee, Role.Employee);
                         return RedirectToAction(nameof(Index));
                     }
                     else {

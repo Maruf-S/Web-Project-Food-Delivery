@@ -9,17 +9,29 @@
     }
 }
 
-<h2>Manage your account</h2>
-
-<div>
-    <h4>Change your account settings</h4>
-    <hr />
-    <div class="row">
-        <div class="col-md-3">
-            <partial name="_ManageNav" />
-        </div>
-        <div class="col-md-9">
-            @RenderBody()
+<section class="pager-section text-center">
+    <div class="fixed-bg bg4"></div>
+    <div class="container">
+        <div class="pager-head">
+            <h2>Manage Account</h2>
+            <ul>
+                <li><a href="#" title="">Home</a></li>
+                <li><span>Manage Account</span></li>
+            </ul>
+        </div><!--pager-head end-->
+    </div>
+</section><!--pager-section end-->
+<div class="pb-5 my-5 container">
+    <div>
+        <h6 class="h4">Change your account settings</h6>
+        <hr />
+        <div class="row">
+            <div class="col-md-3">
+                <partial name="_ManageNav" />
+            </div>
+            <div class="col-md-9">
+                @RenderBody()
+            </div>
         </div>
     </div>
 </div>

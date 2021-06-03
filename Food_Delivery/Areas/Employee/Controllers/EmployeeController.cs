@@ -1,5 +1,6 @@
 ﻿using Food_Delivery.Helpers;
 using Food_Delivery.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace Food_Delivery.Areas.Employee.Controllers
 {
+    [Authorize(Roles = Role.Employee)]
     [Route("api/[controller]")]
     [ApiController]
     public class EmployeeController : ControllerBase
