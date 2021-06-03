@@ -106,7 +106,7 @@ namespace Food_Delivery.Areas.Employee.Controllers
             _context.OrderBatches.Update(allOrders);
             await _context.SaveChangesAsync();
 
-            return RedirectToAction(actionName:nameof(Orders));
+            return Redirect(Request.Headers["Referer"].ToString());
         }
         
         [HttpGet]
@@ -115,9 +115,24 @@ namespace Food_Delivery.Areas.Employee.Controllers
            return RedirectToAction(actionName:nameof(Login));
         }
         [HttpGet]
-        public async Task<IActionResult> OrderDetails(int id)
+        public IActionResult OrderDetails(int id)
         {
-            return View();
+            var order  =_context.OrderBatches
+                                .Include(e => e.Employee)
+                                .Include(e => e.Customer)
+                                .Include(e => e.OrdersList)
+                                .Include("OrdersList.Food")
+                                .FirstOrDefault(i => i.Id == id);
+            if (order == null) {
+                return NotFound();
+            }
+            double total = 0;
+            foreach (var item in order.OrdersList)
+            {
+                total += (item.Quantity * item.Food.Price);
+            }
+            ViewBag.total = total;
+            return View(order);
         }
         #endregion
         private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
