@@ -1,6 +1,7 @@
 ﻿using Food_Delivery.Helpers;
 using Food_Delivery.Models;
 using Food_Delivery.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -13,6 +14,7 @@ using System.Threading.Tasks;
 namespace Food_Delivery.Areas.Employee.Controllers
 {
     [Area("Employee")]
+    [Authorize(Roles=Role.Employee)]
     public class DashboardController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -35,12 +37,14 @@ namespace Food_Delivery.Areas.Employee.Controllers
         }
         #region Login
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Login()
         {
             //var xre = _userManager.GetUsersInRoleAsync("tutor");
             return View(new InputModel());
         }
 
+        [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(InputModel input, string returnUrl = null)

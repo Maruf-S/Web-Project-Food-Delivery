@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace Food_Delivery.Controllers
 {
+    [AllowAnonymous]
     public class Restaurants : Controller
     {
         private readonly ApplicationDbContext _context;

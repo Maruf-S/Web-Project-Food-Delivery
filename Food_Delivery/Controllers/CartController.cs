@@ -1,5 +1,6 @@
 ﻿using Food_Delivery.Helpers;
 using Food_Delivery.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace Food_Delivery.Controllers
 {
+    [AllowAnonymous]
     public class CartController : Controller
     {
         private readonly ApplicationDbContext _context;

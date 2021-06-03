@@ -7,9 +7,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Food_Delivery.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
+using Food_Delivery.Helpers;
 
 namespace Food_Delivery.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
 

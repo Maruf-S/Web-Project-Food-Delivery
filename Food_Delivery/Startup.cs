@@ -43,6 +43,50 @@ namespace Food_Delivery
                 options.Password.RequiredLength = 6;
                 options.Password.RequiredUniqueChars = 1;
             }).AddRoles<IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.Events = new Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents
+                {
+                    OnRedirectToLogin = ctx =>
+                    {
+                        var requestPath = ctx.Request.Path;
+                        if (requestPath.StartsWithSegments("/Admin"))
+                        {
+                            ctx.Response.Redirect("/Admin/Dashboard/Login");
+                        }
+                        else if (requestPath.StartsWithSegments("/Employee"))
+                        {
+                            ctx.Response.Redirect("/Employee/Dashboard/Login");
+                        }
+                        else {
+                            ctx.Response.Redirect("/Identity/Account/Login");
+                        }
+                        return Task.CompletedTask;
+                    },
+                    OnRedirectToAccessDenied = ctx =>
+                    {
+                        var requestPath = ctx.Request.Path;
+                        if (requestPath.StartsWithSegments("/Admin"))
+                        {
+                            ctx.Response.Redirect("/Admin/Dashboard/Login");
+                        }
+                        else if (requestPath.StartsWithSegments("/Employee"))
+                        {
+                            ctx.Response.Redirect("/Employee/Dashboard/Login");
+                        }
+                        else {
+                            ctx.Response.Redirect("/Identity/Account/Login");
+                        }
+                        return Task.CompletedTask;
+                    }
+                };
+                // Cookie settings
+                options.Cookie.HttpOnly = true;
+
+                options.LoginPath = "/Identity/Account/Login";
+                //options.AccessDeniedPath = "/Identity/Account/Login";
+                options.SlidingExpiration = true;
+            });
 
             //services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddRazorPages();

@@ -2,6 +2,7 @@
 using Food_Delivery.Areas.Employee.ViewModels;
 using Food_Delivery.Helpers;
 using Food_Delivery.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -18,6 +19,7 @@ using System.Threading.Tasks;
 namespace Food_Delivery.Areas.SystemAdmin.Controllers
 {
     [Area("SystemAdmin")]
+    [Authorize(Roles = Role.Admin)]
     public class DashboardController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -52,6 +54,7 @@ namespace Food_Delivery.Areas.SystemAdmin.Controllers
         }
 
         #region ADMIN LOGIN
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult Login()
         {
@@ -59,6 +62,7 @@ namespace Food_Delivery.Areas.SystemAdmin.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(InputModel input,string returnUrl = null)
         {
