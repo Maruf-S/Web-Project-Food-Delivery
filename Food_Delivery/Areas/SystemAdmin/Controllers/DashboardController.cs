@@ -113,6 +113,13 @@ namespace Food_Delivery.Areas.SystemAdmin.Controllers
             return View(employeeVM);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> LogOutAsync()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction(actionName: nameof(Login));
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EmployeeUpsert(string id, EmployeeUpsertVM employeeVM)

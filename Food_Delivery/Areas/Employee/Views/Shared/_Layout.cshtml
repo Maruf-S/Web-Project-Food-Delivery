@@ -140,9 +140,13 @@
             </a>
         </li>*@
             <!--NOTIS ----------------------------- -->
-            <li class="nav-item">
-                <a  asp-action="LogOut" class="nav-link">Logout</a>
-            </li>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <li class="nav-item">
+                    <a asp-action="LogOut" class="nav-link">Logout</a>
+                </li>
+            }
+
         </ul>
         </nav>
         <!-- /.navbar -->
