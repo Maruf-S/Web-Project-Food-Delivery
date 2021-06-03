@@ -36,6 +36,11 @@ namespace Food_Delivery.Controllers
                 .OrderBy(x => rnd.Next())
                 .Take(4).
                 ToList();
+            ViewBag.FFood = _context.Foods
+            .OrderBy(x => rnd.Next())
+            .Take(4).
+            ToList();
+
             return View();
         }
         public IActionResult About() {
