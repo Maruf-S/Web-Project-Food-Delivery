@@ -32,13 +32,13 @@ namespace Food_Delivery.Controllers
         public IActionResult Index()
         {
             var rnd = new Random();
-            ViewBag.Fres = _context.Restaurants.
-                ToList()
+            ViewBag.Fres = _context.Restaurants
+                .ToList()
                 .OrderBy(x => rnd.Next())
-                .Take(4);
-
-            ViewBag.FFood = _context.Foods.
-            ToList()
+                .Take(4)
+                ;
+            ViewBag.FFood = _context.Foods
+                .ToList()
             .OrderBy(x => rnd.Next())
             .Take(4);
 

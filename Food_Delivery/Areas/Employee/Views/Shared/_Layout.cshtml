@@ -1,5 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using Food_Delivery.Models
+@using Food_Delivery.Helpers
 
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
@@ -218,7 +219,7 @@
             $('[data-toggle="tooltip"]').tooltip()
         })
     </script>
-    @if (User.Identity.IsAuthenticated)
+    @if (User.Identity.IsAuthenticated && (await UserManager.IsInRoleAsync(await UserManager.GetUserAsync(User),Role.Employee)))
     {
         <script src="~/js/EmployeeTracking.js"></script>
     }

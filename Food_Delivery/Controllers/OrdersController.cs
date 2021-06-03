@@ -1,5 +1,6 @@
 ﻿using Food_Delivery.Helpers;
 using Food_Delivery.Models;
+using Food_Delivery.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -32,33 +33,39 @@ namespace Food_Delivery.Controllers
                 return View();
             }
             ViewBag.total = 0;
-            return View(new Order());
+            return View(new CheckoutVM());
         }
         [HttpPost]
-        public IActionResult CheckOut(Order order)
+        public async Task<IActionResult> CheckOutAsync(CheckoutVM orders)
         {
             var cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
             ViewBag.cart = cart;
-            //var allEmp = _userManager.GetUsersInRoleAsync();
-            var allEmp = _userManager.Users.ToList();
+            var allEmp = await _userManager.GetUsersInRoleAsync(Role.Employee);
             var rnd = new Random();
             var unluckyEmp = allEmp.OrderBy(x => rnd.Next()).First();
             if (ModelState.IsValid) {
 
+                var newBatch = new OrderBatch
+                {
+                    Adress = orders.Adress,
+                    City = orders.City,
+                    CustomerId = orders.CustomerId,
+                    DatePlaced = DateTime.Now,
+                    DeliveryLoc = orders.DeliveryLoc,
+                    Delivered = false,
+                    OrderNote = orders.OrderNote,
+                    EmployeeId = unluckyEmp.Id
+
+                };
+                _context.OrderBatches.Add(newBatch);
+                await _context.SaveChangesAsync();
                 foreach (Item item in cart)
                 {
                     _context.Orders.Add(new Order
                     {
-                        Adress = order.Adress,
-                        City = order.City,
-                        CustomerId = order.CustomerId,
-                        DatePlaced = DateTime.Now,
-                        DeliveryLoc = order.DeliveryLoc,
-                        Delivered = false,
                         Quantity = item.Quantity,
                         FoodId = item.item.Id,
-                        OrderNote = order.OrderNote,
-                        EmployeeId = unluckyEmp.Id
+                        BatchId = newBatch.Id
 
                     });
                 }
@@ -71,14 +78,16 @@ namespace Food_Delivery.Controllers
         public IActionResult CheckOut2()
         {
             var cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
+            HttpContext.Session.Remove("cart");
             ViewBag.cart = cart;
             if (ViewBag.cart != null)
             {
                 ViewBag.total = cart.Sum(item => item.item.Price * item.Quantity);
+                return View();
             }
             ViewBag.total = 0;
-            HttpContext.Session.Remove("cart");
             return View();
+
         }
     }
 }
