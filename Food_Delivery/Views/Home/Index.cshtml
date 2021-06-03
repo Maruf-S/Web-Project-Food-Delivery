@@ -61,11 +61,13 @@
         <!--sec-title end-->
         <div class="featured-sec">
             <div class="row mb-70">
+                
                 @foreach (Restaurant item in ViewBag.Fres)
                 {
+
                     <div class="col-md-6">
                         <div class="featured-item">
-                            <img src="~/Images/Restaurants/@item.LargeImagePath " alt="" class="w-100">
+                            <a asp-controller="Restaurants" asp-action="Details" asp-route-id="@item.Id"><img src="~/Images/Restaurants/@item.LargeImagePath " alt="" class="w-100"></a> 
                             <ul class="ftz">
                                 <li>
                                     <span>
@@ -167,18 +169,17 @@
             <!--options end-->
             <div class="row">
                 <div class="masonary">
-                    @for (int i = 0; i < 4; i++)
+                    @foreach (Food item in ViewBag.FFood)
                     {
                         <div class="col-lg-3 col-md-6 col-sm-6 meat">
                             <div class="pd-item">
                                 <div class="pd-thumbnail">
-                                    <img src="https://via.placeholder.com/442x442
-                           " alt="" class="w-100">
+                                    <img src="~/Images/Foods/@item.ImagePath" alt="" class="w-100">
                                 </div>
-                                <h3 class="semi-bold text-capitalize"><a href="restaurant-details.html" title="">Rib-eye Steaks</a> </h3>
-                                <p>Few things are better than a properly grilled steak.</p>
-                                <strong class="semi-bold">$15.69</strong>
-                                <a asp-controller="cart" asp-action="buy" asp-route-id="@ViewBag.Id" title="" class="btn-default gradient-bg half-radius height-2">Add to cart <span></span></a>
+                                <h3 class="semi-bold text-capitalize">@item.Name</h3>
+                                <p>Presented by: @item.Resturant.Name</p>
+                                <strong class="semi-bold">@item.Price ETB</strong>
+                                <a asp-controller="cart" asp-action="buy" asp-route-id="@item.Id " title="" class="btn-default gradient-bg half-radius height-2">Add to cart <span></span></a>
                             </div>
                         </div>
                     }
