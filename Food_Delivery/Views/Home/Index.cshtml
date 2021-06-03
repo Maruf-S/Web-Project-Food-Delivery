@@ -177,7 +177,7 @@
                                     <img src="~/Images/Foods/@item.ImagePath" alt="" class="w-100">
                                 </div>
                                 <h3 class="semi-bold text-capitalize">@item.Name</h3>
-                                <p>Presented by: @item.Resturant.Name</p>
+                                <p>@item.Description.</p>
                                 <strong class="semi-bold">@item.Price ETB</strong>
                                 <a asp-controller="cart" asp-action="buy" asp-route-id="@item.Id " title="" class="btn-default gradient-bg half-radius height-2">Add to cart <span></span></a>
                             </div>
