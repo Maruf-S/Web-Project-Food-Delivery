@@ -9,6 +9,7 @@ using Food_Delivery.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Food_Delivery.Helpers;
+using Microsoft.EntityFrameworkCore;
 
 namespace Food_Delivery.Controllers
 {
@@ -44,12 +45,34 @@ namespace Food_Delivery.Controllers
 
             return View();
         }
+        [HttpGet]
+        public async Task<IActionResult> MyProfile() {
+            var user = await GetCurrentUserAsync();
+            if (user == null || !await _userManager.IsInRoleAsync(user, Role.Customer)) {
+                return View(new List<OrderBatch>());
+            }
+            var allOrders = _context.OrderBatches
+                    .Where(e => e.CustomerId == user.Id)
+                    .Include(e => e.Employee)
+                    .Include(e => e.Customer)
+                    .Include(e => e.OrdersList)
+                    .Include("OrdersList.Food")
+                    .ToList();
+
+            return View(allOrders);
+        }
         public IActionResult About() {
             return View();
         }
         public IActionResult Privacy()
         {
             return View();
+        }
+        [HttpGet]
+        public async Task<IActionResult> LogOutAsync() {
+
+            await _signInManager.SignOutAsync();
+            return RedirectToAction(nameof(Index));
         }
 
         /*[HttpGet]
@@ -69,5 +92,6 @@ namespace Food_Delivery.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+        private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
     }
 }

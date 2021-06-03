@@ -1,0 +1,95 @@
+﻿@model List<OrderBatch>
+<section class="pager-section text-center">
+    <div class="fixed-bg bg4"></div>
+    <div class="container">
+        <div class="pager-head">
+            <h2>My Profile</h2>
+            <ul>
+                <li><a asp-action="">Home</a></li>
+                <li><span>My Profile</span></li>
+            </ul>
+        </div><!--pager-head end-->
+    </div>
+</section><!--pager-section end-->
+<section class="sec-block">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="profile-section">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="orders-tab" data-toggle="tab" href="#orders" role="tab" aria-controls="orders" aria-selected="true">My orders</a>
+                        </li>
+                    </ul>
+                    @if (Model.Count == 0)
+                    {
+                <h6 class="h5 py-4">Nothing is in your inventory, Please <a asp-area="Identity" asp-page="/Account/Login" class="text-purple"><u>Sign In</u></a> to order Products.</h6>
+                    }
+                    else
+                    {
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="orders" role="tabpanel" aria-labelledby="orders-tab">
+                                <div class="order-tables-sec">
+                                    <div class="ord-head">
+                                        <ul>
+                                            <li class="date">Date</li>
+                                            <li class="delivery">Delivery address</li>
+                                            <li class="amount">Amount</li>
+                                            <li>Status</li>
+                                        </ul>
+                                    </div><!--ord-head end-->
+                                    @for (int i = 0; i < Model.Count; i++)
+                                    {
+                                        var curItem = Model[i];
+                                        double total = 0;
+                                        foreach (var item in curItem.OrdersList)
+                                        {
+                                            total += (item.Quantity * item.Food.Price);
+                                        }
+                                        <div class="ord-tablez">
+
+                                            <!--oc-table end-->
+                                            <div class="oc-table @(i==0 ? "active" :"" )">
+                                                <div class="oct-table-head">
+                                                    <ul>
+                                                        <li class="date">@curItem.DatePlaced.ToString("MMMM dd, y")</li>
+                                                        <li class="delivery">@curItem.City, @curItem.Adress</li>
+                                                        <li class="amount">@total ETB </li>
+                                                        @if (curItem.Delivered)
+                                                        {
+                                                            <li class="status">Delivered</li>
+                                                        }
+                                                        else
+                                                        {
+                                                            <li class="status active">Pending</li>
+                                                        }
+                                                    </ul>
+                                                    <a title="" class="tog-down"><i class="fa fa-angle-down"></i></a>
+                                                </div><!--oct-table-head end-->
+                                                <div class="oct-table-body">
+                                                    <ul>
+                                                        @foreach (var item in curItem.OrdersList)
+                                                        {
+                                                            <li>
+                                                                <h4>@item.Food.Name <span>x<Text>@item.Quantity</Text></span></h4>
+                                                                <span>@(item.Quantity * item.Food.Price) ETB</span>
+                                                            </li>
+                                                        }
+                                                        <li>
+                                                            <h4><strong>Payment Method</strong></h4>
+                                                            <span>Pay on Delivery</span>
+                                                        </li>
+                                                    </ul>
+                                                </div><!--oct-table-body end-->
+                                            </div><!--oc-table end-->
+                                        </div><!--ord-tablez end-->
+                                    }
+                                </div><!--order-tables-sec end-->
+                            </div>
+                        </div>
+                    }
+                </div><!--profile-section end-->
+            </div>
+        </div>
+    </div>
+</section>
