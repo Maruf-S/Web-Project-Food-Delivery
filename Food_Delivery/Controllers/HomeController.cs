@@ -31,7 +31,11 @@ namespace Food_Delivery.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            ViewBag.Fres = _context.Restaurants.ToList();
+            var rnd = new Random();
+            ViewBag.Fres = _context.Restaurants
+                .OrderBy(x => rnd.Next())
+                .Take(4).
+                ToList();
             return View();
         }
         public IActionResult About() {
