@@ -6,11 +6,11 @@
     <div class="fixed-bg bg4"></div>
     <div class="container">
         <div class="pager-head">
-            <h2>bulgarian restaurant</h2>
+            <h2>@Model.Name</h2>
             <ul>
-                <li><a href="#" title="">Home</a></li>
-                <li><a href="#" title="">Restaurants</a></li>
-                <li><span>bulgarian restaurant</span></li>
+                <li><a asp-area="" asp-controller="Home" asp-action="Index" title="">Home</a></li>
+                <li><a asp-area="" asp-controller="REstaurants" asp-action="Index" title="">Restaurants</a></li>
+                <li><span>@Model.Name</span></li>
             </ul>
         </div><!--pager-head end-->
     </div>
@@ -21,10 +21,9 @@
         <div class="restaurant-details">
             <div class="food-thumbail-large">
                 <img src="~/Images/Restaurants/@Model.LargeImagePath" alt="" class="w-100">
-                @*<div class="pl-logo">
-                                                <img src="https://via.placeholder.com/150x150
-                    " alt="">
-                                            </div>*@
+                @*<div class="pl-logo" 
+                     <img src=" ~/Images/Restaurants/@Model.LargeImage " alt="">
+                </div>*@
             </div>
             <div class="food-info">
                 <ul class="meta">
