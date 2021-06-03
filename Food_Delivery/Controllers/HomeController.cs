@@ -29,6 +29,7 @@ namespace Food_Delivery.Controllers
         public IActionResult Index()
         {
             ViewBag.Fres = _context.Restaurants.ToList();
+            ViewBag.FFood = _context.Foods.ToList();
             return View();
         }
         public IActionResult About() {
