@@ -61,146 +61,50 @@
         <!--sec-title end-->
         <div class="featured-sec">
             <div class="row mb-70">
-                <div class="col-md-6">
-                    <div class="featured-item">
-                        <img src="https://via.placeholder.com/555x400" alt="" class="w-100">
-                        <ul class="ftz">
-                            <li>
-                                <span>
-                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M15.8333 3.33337H4.16667C3.24619 3.33337 2.5 4.07957 2.5 5.00004V16.6667C2.5 17.5872 3.24619 18.3334 4.16667 18.3334H15.8333C16.7538 18.3334 17.5 17.5872 17.5 16.6667V5.00004C17.5 4.07957 16.7538 3.33337 15.8333 3.33337Z" stroke="#D8AB37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M2.5 8.33337H17.5" stroke="#D8AB37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M13.3333 1.66663V4.99996" stroke="#D8AB37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M6.66669 1.66663V4.99996" stroke="#D8AB37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                </span>
-                                Monday - Sunday
-                            </li>
-                            <li>
-                                <span>
-                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M10 18.3333C14.6024 18.3333 18.3334 14.6023 18.3334 9.99996C18.3334 5.39759 14.6024 1.66663 10 1.66663C5.39765 1.66663 1.66669 5.39759 1.66669 9.99996C1.66669 14.6023 5.39765 18.3333 10 18.3333Z" stroke="#D8AB37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M10 5V10L13.3333 11.6667" stroke="#D8AB37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                </span>
-                                9:00am - 11:00pm
-                            </li>
-                        </ul>
-                        <div class="feat-optz">
-                            <span class="text-capitalize">restaurant</span>
-                            <h2 class="text-capitalize"><a href="restaurant-details.html" title="">bulgarian restaurant</a></h2>
+                @foreach (Restaurant item in ViewBag.Fres)
+                {
+                    <div class="col-md-6">
+                        <div class="featured-item">
+                            <img src="~/Images/Restaurants/@item.LargeImagePath " alt="" class="w-100">
+                            <ul class="ftz">
+                                <li>
+                                    <span>
+                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M15.8333 3.33337H4.16667C3.24619 3.33337 2.5 4.07957 2.5 5.00004V16.6667C2.5 17.5872 3.24619 18.3334 4.16667 18.3334H15.8333C16.7538 18.3334 17.5 17.5872 17.5 16.6667V5.00004C17.5 4.07957 16.7538 3.33337 15.8333 3.33337Z" stroke="#D8AB37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M2.5 8.33337H17.5" stroke="#D8AB37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M13.3333 1.66663V4.99996" stroke="#D8AB37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M6.66669 1.66663V4.99996" stroke="#D8AB37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </span>
+                                    Monday - Sunday
+                                </li>
+                                <li>
+                                    <span>
+                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M10 18.3333C14.6024 18.3333 18.3334 14.6023 18.3334 9.99996C18.3334 5.39759 14.6024 1.66663 10 1.66663C5.39765 1.66663 1.66669 5.39759 1.66669 9.99996C1.66669 14.6023 5.39765 18.3333 10 18.3333Z" stroke="#D8AB37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M10 5V10L13.3333 11.6667" stroke="#D8AB37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </span>
+                                    9:00am - 11:00pm
+                                </li>
+                            </ul>
+                            <div class="feat-optz">
+                                <span class="text-capitalize">restaurant</span>
+                                <h2 class="text-capitalize"><a asp-controller="Restaurants" asp-action="Details" asp-route-id="@item.Id" title="">@item.Name</a></h2>
+                            </div>
                         </div>
                     </div>
-                    <!--featured-item end-->
-                </div>
-                <div class="col-md-6">
-                    <div class="featured-item">
-                        <img src="https://via.placeholder.com/555x400
-                     " alt="" class="w-100">
-                        <ul class="ftz">
-                            <li>
-                                <span>
-                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M15.8333 3.33337H4.16667C3.24619 3.33337 2.5 4.07957 2.5 5.00004V16.6667C2.5 17.5872 3.24619 18.3334 4.16667 18.3334H15.8333C16.7538 18.3334 17.5 17.5872 17.5 16.6667V5.00004C17.5 4.07957 16.7538 3.33337 15.8333 3.33337Z" stroke="#D8AB37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M2.5 8.33337H17.5" stroke="#D8AB37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M13.3333 1.66663V4.99996" stroke="#D8AB37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M6.66669 1.66663V4.99996" stroke="#D8AB37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                </span>
-                                Monday - Sunday
-                            </li>
-                            <li>
-                                <span>
-                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M10 18.3333C14.6024 18.3333 18.3334 14.6023 18.3334 9.99996C18.3334 5.39759 14.6024 1.66663 10 1.66663C5.39765 1.66663 1.66669 5.39759 1.66669 9.99996C1.66669 14.6023 5.39765 18.3333 10 18.3333Z" stroke="#D8AB37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M10 5V10L13.3333 11.6667" stroke="#D8AB37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                </span>
-                                9:00am - 11:00pm
-                            </li>
-                        </ul>
-                        <div class="feat-optz">
-                            <span class="text-capitalize">Asian Food</span>
-                            <h2 class="text-capitalize"><a href="restaurant-details.html" title="">Sushi Taste</a></h2>
-                        </div>
-                    </div>
-                    <!--featured-item end-->
-                </div>
-                <div class="col-md-8">
-                    <div class="featured-item">
-                        <img src="https://via.placeholder.com/750x400
-                     " alt="" class="w-100">
-                        <ul class="ftz">
-                            <li>
-                                <span>
-                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M15.8333 3.33337H4.16667C3.24619 3.33337 2.5 4.07957 2.5 5.00004V16.6667C2.5 17.5872 3.24619 18.3334 4.16667 18.3334H15.8333C16.7538 18.3334 17.5 17.5872 17.5 16.6667V5.00004C17.5 4.07957 16.7538 3.33337 15.8333 3.33337Z" stroke="#D8AB37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M2.5 8.33337H17.5" stroke="#D8AB37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M13.3333 1.66663V4.99996" stroke="#D8AB37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M6.66669 1.66663V4.99996" stroke="#D8AB37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                </span>
-                                Monday - Sunday
-                            </li>
-                            <li>
-                                <span>
-                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M10 18.3333C14.6024 18.3333 18.3334 14.6023 18.3334 9.99996C18.3334 5.39759 14.6024 1.66663 10 1.66663C5.39765 1.66663 1.66669 5.39759 1.66669 9.99996C1.66669 14.6023 5.39765 18.3333 10 18.3333Z" stroke="#D8AB37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M10 5V10L13.3333 11.6667" stroke="#D8AB37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                </span>
-                                9:00am - 11:00pm
-                            </li>
-                        </ul>
-                        <div class="feat-optz">
-                            <span class="text-capitalize">Cafe</span>
-                            <h2 class="text-capitalize"><a href="restaurant-details.html" title="">Hot Pastry Cafe</a></h2>
-                        </div>
-                    </div>
-                    <!--featured-item end-->
-                </div>
-                <div class="col-md-4">
-                    <div class="featured-item">
-                        <img src="https://via.placeholder.com/360x400
-                     " alt="" class="w-100">
-                        <ul class="ftz">
-                            <li>
-                                <span>
-                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M15.8333 3.33337H4.16667C3.24619 3.33337 2.5 4.07957 2.5 5.00004V16.6667C2.5 17.5872 3.24619 18.3334 4.16667 18.3334H15.8333C16.7538 18.3334 17.5 17.5872 17.5 16.6667V5.00004C17.5 4.07957 16.7538 3.33337 15.8333 3.33337Z" stroke="#D8AB37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M2.5 8.33337H17.5" stroke="#D8AB37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M13.3333 1.66663V4.99996" stroke="#D8AB37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M6.66669 1.66663V4.99996" stroke="#D8AB37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                </span>
-                                Monday - Sunday
-                            </li>
-                            <li>
-                                <span>
-                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M10 18.3333C14.6024 18.3333 18.3334 14.6023 18.3334 9.99996C18.3334 5.39759 14.6024 1.66663 10 1.66663C5.39765 1.66663 1.66669 5.39759 1.66669 9.99996C1.66669 14.6023 5.39765 18.3333 10 18.3333Z" stroke="#D8AB37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M10 5V10L13.3333 11.6667" stroke="#D8AB37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                </span>
-                                9:00am - 11:00pm
-                            </li>
-                        </ul>
-                        <div class="feat-optz">
-                            <span class="text-capitalize">Pub</span>
-                            <h2 class="text-capitalize"><a href="restaurant-details.html" title="">Beer Power</a></h2>
-                        </div>
-                    </div>
-                    <!--featured-item end-->
-                </div>
+                  }
             </div>
-            <div class="row text-center">
-                <div class="col-12">
-                    <a asp-area="" asp-controller="Restaurants" asp-action="Index" class="btn-default">View all list <span></span></a>
-                </div>
+
+        </div>
+        <div class="row text-center">
+            <div class="col-12">
+                <a asp-area="" asp-controller="Restaurants" asp-action="Index" class="btn-default">View all list <span></span></a>
             </div>
         </div>
-        <!--featured-sec end-->
     </div>
+        <!--featured-sec end-->
 </section>
 <!--featured-section end-->
 <section class="sec-block">
@@ -218,7 +122,7 @@
                         <div class="propt-icon">
                             <img src="assets/images/icons/discount.svg" alt="">
                         </div>
-                        <h3 class="semi-bold text-capitalize">Tasty Dishes</h3>
+                        <h3 class="semi-bold text-capitalize">Amazing Taste</h3>
                         <p>We have a collection of tasty dishes which you can choose of easily.</p>
                     </div>
                     <!--proptz end-->
@@ -263,102 +167,21 @@
             <!--options end-->
             <div class="row">
                 <div class="masonary">
-                    <div class="col-lg-3 col-md-6 col-sm-6 meat">
-                        <div class="pd-item">
-                            <div class="pd-thumbnail">
-                                <img src="https://via.placeholder.com/442x442
+                    @for (int i = 0; i < 4; i++)
+                    {
+                        <div class="col-lg-3 col-md-6 col-sm-6 meat">
+                            <div class="pd-item">
+                                <div class="pd-thumbnail">
+                                    <img src="https://via.placeholder.com/442x442
                            " alt="" class="w-100">
+                                </div>
+                                <h3 class="semi-bold text-capitalize"><a href="restaurant-details.html" title="">Rib-eye Steaks</a> </h3>
+                                <p>Few things are better than a properly grilled steak.</p>
+                                <strong class="semi-bold">$15.69</strong>
+                                <a asp-controller="cart" asp-action="buy" asp-route-id="@ViewBag.Id" title="" class="btn-default gradient-bg half-radius height-2">Add to cart <span></span></a>
                             </div>
-                            <h3 class="semi-bold text-capitalize"><a href="restaurant-details.html" title="">Rib-eye Steaks</a> </h3>
-                            <p>Few things are better than a properly grilled steak.</p>
-                            <strong class="semi-bold">$15.69</strong>
-                            <a href="cart.html" title="" class="btn-default gradient-bg half-radius height-2">Add to cart <span></span></a>
                         </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6 meat">
-                        <div class="pd-item">
-                            <div class="pd-thumbnail">
-                                <img src="https://via.placeholder.com/442x442
-                           " alt="" class="w-100">
-                            </div>
-                            <h3 class="semi-bold text-capitalize"><a href="restaurant-details.html" title="">Top Sirloin Steaks </a></h3>
-                            <p>Few things are better than a properly grilled steak.</p>
-                            <strong class="semi-bold">$25.39</strong>
-                            <a href="cart.html" title="" class="btn-default gradient-bg half-radius height-2">Add to cart <span></span></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6 meat">
-                        <div class="pd-item">
-                            <div class="pd-thumbnail">
-                                <img src="https://via.placeholder.com/442x442
-                           " alt="" class="w-100">
-                            </div>
-                            <h3 class="semi-bold text-capitalize"><a href="restaurant-details.html" title="">T-Bone Steaks</a> </h3>
-                            <p>Few things are better than a properly grilled steak.</p>
-                            <strong class="semi-bold">$18.99</strong>
-                            <a href="cart.html" title="" class="btn-default gradient-bg half-radius height-2">Add to cart <span></span></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6 meat">
-                        <div class="pd-item">
-                            <div class="pd-thumbnail">
-                                <img src="https://via.placeholder.com/442x442
-                           " alt="" class="w-100">
-                            </div>
-                            <h3 class="semi-bold text-capitalize"><a href="restaurant-details.html" title="">Strip Steaks</a> </h3>
-                            <p>Few things are better than a properly grilled steak.</p>
-                            <strong class="semi-bold">$16.89</strong>
-                            <a href="cart.html" title="" class="btn-default gradient-bg half-radius height-2">Add to cart <span></span></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6 sushi fastfood">
-                        <div class="pd-item">
-                            <div class="pd-thumbnail">
-                                <img src="https://via.placeholder.com/442x442
-                           " alt="" class="w-100">
-                            </div>
-                            <h3 class="semi-bold text-capitalize"><a href="restaurant-details.html" title="">Rib-eye Steaks</a> </h3>
-                            <p>Few things are better than a properly grilled steak.</p>
-                            <strong class="semi-bold">$15.69</strong>
-                            <a href="cart.html" title="" class="btn-default gradient-bg half-radius height-2">Add to cart <span></span></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6 vegitarian fastfood">
-                        <div class="pd-item">
-                            <div class="pd-thumbnail">
-                                <img src="https://via.placeholder.com/442x442
-                           " alt="" class="w-100">
-                            </div>
-                            <h3 class="semi-bold text-capitalize"><a href="restaurant-details.html" title="">Top Sirloin Steaks</a> </h3>
-                            <p>Few things are better than a properly grilled steak.</p>
-                            <strong class="semi-bold">$25.39</strong>
-                            <a href="cart.html" title="" class="btn-default gradient-bg half-radius height-2">Add to cart <span></span></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6 sushi pizza vegitarian">
-                        <div class="pd-item">
-                            <div class="pd-thumbnail">
-                                <img src="https://via.placeholder.com/442x442
-                           " alt="" class="w-100">
-                            </div>
-                            <h3 class="semi-bold text-capitalize"><a href="restaurant-details.html" title="">T-Bone Steaks</a> </h3>
-                            <p>Few things are better than a properly grilled steak.</p>
-                            <strong class="semi-bold">$18.99</strong>
-                            <a href="cart.html" title="" class="btn-default gradient-bg half-radius height-2">Add to cart <span></span></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6 fastfood sushi vegitarian">
-                        <div class="pd-item">
-                            <div class="pd-thumbnail">
-                                <img src="https://via.placeholder.com/442x442
-                           " alt="" class="w-100">
-                            </div>
-                            <h3 class="semi-bold text-capitalize"><a href="restaurant-details.html" title="">Strip Steaks</a> </h3>
-                            <p>Few things are better than a properly grilled steak.</p>
-                            <strong class="semi-bold">$16.89</strong>
-                            <a href="cart.html" title="" class="btn-default gradient-bg half-radius height-2">Add to cart <span></span></a>
-                        </div>
-                    </div>
+                    }
                 </div>
                 <!--masonary end-->
             </div>
