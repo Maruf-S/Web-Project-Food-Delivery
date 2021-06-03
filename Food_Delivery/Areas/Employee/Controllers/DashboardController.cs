@@ -108,6 +108,7 @@ namespace Food_Delivery.Areas.Employee.Controllers
 
             return Redirect(Request.Headers["Referer"].ToString());
         }
+        
         [HttpGet]
         public async Task<IActionResult> LogOutAsync() {
            await _signInManager.SignOutAsync();
