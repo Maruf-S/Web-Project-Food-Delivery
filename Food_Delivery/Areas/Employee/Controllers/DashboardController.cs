@@ -30,9 +30,8 @@ namespace Food_Delivery.Areas.Employee.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            ViewBag.DeliveredOrders = _context.Orders
-                    .Where(e => e.Delivered == true)
-                    .ToList().Count;
+            ViewBag.DeliveredOrders = _context.OrderBatches
+                    .Where(e => e.Delivered == true).Count();
             return View();
         }
         #region Login
@@ -84,13 +83,14 @@ namespace Food_Delivery.Areas.Employee.Controllers
         public async Task<IActionResult> Orders()
         {
             var curUser = await GetCurrentUserAsync();
-            var allOrders =  _context.Orders
+            var allOrders =  _context.OrderBatches
 
                                 .Where(e => e.EmployeeId == curUser.Id)
                                 .Where(e => e.Delivered == false)
-                                .Include(e => e.Food)
                                 .Include(e => e.Employee)
                                 .Include(e => e.Customer)
+                                .Include(e => e.OrdersList)
+                                .Include("OrdersList.Food")
                                 .ToList();
 
             return View(allOrders);
@@ -99,11 +99,11 @@ namespace Food_Delivery.Areas.Employee.Controllers
         public async Task<IActionResult> ConfirmDelivery(int id)
         {
             var curUser = await GetCurrentUserAsync();
-            var allOrders = _context.Orders
+            var allOrders = _context.OrderBatches
                                 .Where(e => e.Id == id)
                                 .FirstOrDefault();
             allOrders.Delivered = true;
-            _context.Orders.Update(allOrders);
+            _context.OrderBatches.Update(allOrders);
             await _context.SaveChangesAsync();
 
             return RedirectToAction(actionName:nameof(Orders));

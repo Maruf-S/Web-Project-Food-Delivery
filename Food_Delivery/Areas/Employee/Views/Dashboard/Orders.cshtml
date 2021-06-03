@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Food_Delivery.Models.Order>
+﻿@model IEnumerable<Food_Delivery.Models.OrderBatch>
 
 @{
     ViewData["Title"] = "ManageRestaurants";
@@ -51,8 +51,8 @@
                         <table id="DTable" class="table table-bordered table-hover">
                             <thead class="thead-dark">
                                 <tr>
-                                    <th>Food Name</th>
-                                    <th>Quantity</th>
+                                    @*<th>Food Name</th>
+                                    <th>Quantity</th>*@
                                     <th>Customer Name</th>
                                     <th>Date Placed</th>
                                     <th>City</th>
@@ -65,12 +65,12 @@
                                 @foreach (var item in Model)
                                 {
                                 <tr>
-                                    <td>
+                                    @*<td>
                                         @Html.DisplayFor(modelItem => item.Food.Name)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Quantity)
-                                    </td>
+                                    </td>*@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Customer.FirstName) @Html.DisplayFor(modelItem => item.Customer.LastName)
                                     </td>
@@ -102,8 +102,8 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th>Food Name</th>
-                                    <th>Quantity</th>
+                                    @*<th>Food Name</th>
+                                    <th>Quantity</th>*@
                                     <th>Customer Name</th>
                                     <th>Date Placed</th>
                                     <th>City</th>

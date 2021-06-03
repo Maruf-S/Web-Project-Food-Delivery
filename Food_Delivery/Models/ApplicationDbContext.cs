@@ -17,6 +17,7 @@ namespace Food_Delivery.Models
         public DbSet<Order> Orders { get; set; }
         public DbSet<Restaurant> Restaurants { get; set; }
         public DbSet<Rating> Ratings { get; set; }
+        public DbSet<OrderBatch> OrderBatches { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

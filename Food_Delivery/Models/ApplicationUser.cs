@@ -28,8 +28,8 @@ namespace Food_Delivery.Models
         public string CVdocumentPath { get; set; }
 
         public string ImagePath { get; set; }
-        public ICollection<Order> Orders { get; set; }
+        public ICollection<OrderBatch> Orders { get; set; }
 
-        public ICollection<Order> PendingDeliveries { get; set; }
+        public ICollection<OrderBatch> PendingDeliveries { get; set; }
     }
 }

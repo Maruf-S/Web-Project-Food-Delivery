@@ -47,12 +47,15 @@
                                 <div class="product-info">
                                     <h3><a asp-controller="Restaurants" asp-action="Details" asp-route-id="@restaurant.Id" title="">@restaurant.Name</a></h3>
                                     <ul class="rating">
-                                        @*TODO*@
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
+                                        @for (int i = 0; i < restaurant.Rating; i++)
+                                        {
+                                            <li><i class="fa fa-star"></i></li>
+                                        }
+                                        @for (int i = 0; i < 5 - restaurant.Rating; i++)
+                                        {
+                                            <li><i class="fa fa-star text-muted"></i></li>
+                                        }
+
                                     </ul>
                                     <p>
                                         @restaurant.Description
