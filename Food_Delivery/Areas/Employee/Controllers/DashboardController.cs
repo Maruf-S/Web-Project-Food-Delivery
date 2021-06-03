@@ -108,6 +108,16 @@ namespace Food_Delivery.Areas.Employee.Controllers
 
             return RedirectToAction(actionName:nameof(Orders));
         }
+        [HttpGet]
+        public async Task<IActionResult> LogOutAsync() {
+           await _signInManager.SignOutAsync();
+           return RedirectToAction(actionName:nameof(Login));
+        }
+        [HttpGet]
+        public async Task<IActionResult> OrderDetails(int id)
+        {
+            return View();
+        }
         #endregion
         private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
     }
