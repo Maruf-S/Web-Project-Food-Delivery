@@ -1,4 +1,5 @@
-﻿using Food_Delivery.Models;
+﻿using Food_Delivery.Helpers;
+using Food_Delivery.Models;
 using Food_Delivery.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -50,7 +51,7 @@ namespace Food_Delivery.Areas.Employee.Controllers
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
                 var result = await _signInManager.PasswordSignInAsync(input.Email, input.Password, input.RememberMe, lockoutOnFailure: false);
-                if (result.Succeeded)
+                if (result.Succeeded && await _userManager.IsInRoleAsync(await _userManager.FindByEmailAsync(input.Email), Role.Employee))
                 {
                     return RedirectToAction(nameof(Index));
                 }

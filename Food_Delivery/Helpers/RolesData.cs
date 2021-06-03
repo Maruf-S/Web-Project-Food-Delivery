@@ -37,10 +37,10 @@ namespace Food_Delivery.Helpers
                     {
                         UserName = "Master@Master",
                         Email = "Master@Master",
-                        FirstName = "Master",
-                        LastName = "Master"
+                        FirstName = "Admin",
+                        LastName = ""
                     };
-                    string adminPassword = "7eiRZ9fD";
+                    string adminPassword = "12345678";
 
                     var createPowerUser = await UserManager.CreateAsync(poweruser, adminPassword);
                     await UserManager.SetLockoutEnabledAsync(await UserManager.FindByEmailAsync("Master@Master"), false);//Master Never gets lockedout
@@ -49,15 +49,8 @@ namespace Food_Delivery.Helpers
                         ////Put here as a sample
                         //var x = UserManager.RemoveFromRoleAsync(poweruser, Role.Admin);
 
-                        //here we tie the new user to the role
-                        foreach (var role in Role.GetAllRolesForSeed())
-                        {
-                            if (!await UserManager.IsInRoleAsync(poweruser, role))
-                            {
-
-                                await UserManager.AddToRoleAsync(poweruser, role);
-                            }
-                        }
+                        //Add the admin to his role
+                        await UserManager.AddToRoleAsync(poweruser, Role.Admin);
                     }
                 }
             }
