@@ -67,7 +67,7 @@
 
                     <div class="col-md-6">
                         <div class="featured-item">
-                            <a asp-controller="Restaurants" asp-action="Details" asp-route-id="@item.Id"><img src="~/Images/Restaurants/@item.LargeImagePath " alt="" class="w-100"></a> 
+                            <a asp-controller="Restaurants" asp-action="Details" asp-route-id="@item.Id"><img style="height: 25rem;" src="~/Images/Restaurants/@item.LargeImagePath " alt="" class="w-100"></a> 
                             <ul class="ftz">
                                 <li>
                                     <span>
@@ -174,7 +174,7 @@
                         <div class="col-lg-3 col-md-6 col-sm-6 meat">
                             <div class="pd-item">
                                 <div class="pd-thumbnail">
-                                    <img src="~/Images/Foods/@item.ImagePath" alt="" class="w-100">
+                                    <img style="height: 15rem;" src="~/Images/Foods/@item.ImagePath" alt="" class="w-100">
                                 </div>
                                 <h3 class="semi-bold text-capitalize">@item.Name</h3>
                                 <p>@item.Description.</p>
